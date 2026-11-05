@@ -1,0 +1,20 @@
+step	decision	why	evidence	result
+1	Build an expected-value bot with an opponent model	Exploit the many simple bots expected in a student field while staying sensible	Beat every fixed-style test bot in nearly every match	Base of the entry
+2	Train a CFR solver on an abstraction of the game	A balanced strategy is the strongest thing a rival team could build; we needed one to test against and to learn from	solver/NOTES.md: 758,044 information sets, discounted CFR on 19.2 M deals	cfrS, used as a test opponent and inside the entry
+3	Measure the EV bot against the solver	Find the main threat	EV bot lost about 1.2 chips per hand to the solver over whole 1,000-hand matches	Combine the two
+4	Hybrid: solver plays the first share of each match, EV bot the rest	Let the EV bot learn before it takes over	1,000-hand matches vs the solver: 11/40 and 14/40 against 15/40 and 12/40 for the EV bot alone	Rejected
+5	Solver check: drop an option kind the solver plays under a threshold	Keep the EV bot's exploitation close to sound play	345 of 380 test matches won against 326 for the EV bot alone; thresholds 2%, 5%, 10% tried	Kept, threshold 10%, from the flop
+6	Solver check from preflop too	Preflop mistakes against solvers were the largest remaining loss	+20 points (se 7.7) over 308 Stage 2 matches	Kept
+7	More flop runouts (480 instead of 240)	Less noise in flop equities	+12 points (se 7.6) alone; on top of step 6: -2 (se 6.6)	Rejected (no gain once step 6 is in)
+8	Remove the lead lock	Two-leg rules: a leg cannot see the other leg's chips, so a lead is never safe to fold out	Same moves as before on fixed seeds (identical match logs)	Removed
+9	Softmax temperature halved or doubled	Test sensitivity	+5 (se 5.6) and +6 (se 4.9): both directions 'better', a sign of shared-deal luck	Rejected
+10	Review fix: a small re-raise late in a round was read as an all-in by the solver tree	The solver check then removed every option but fold or call	vs small re-raisers: +3 points (se 2.6), +172 capped chips per match (se 86); general field -4 (se 9.4) over 488 matches	Kept
+11	Review fix: discard named by card identity	Protects against a reordered hole-card list	No change with the current engine	Kept
+12	Review fix: the big blind's preflop check ends the street	Its value had included a bet that cannot come	Part of step 10's tests	Kept
+13	14-bot Stage 2 round robin	Check the entry against the strongest opponents together	91.0 of 104 points; next best 69.0 (results/round_robin_stage2.txt)	Entry first
+14	Bots written to beat the entry with its code in hand	Find weaknesses a real opponent could hit by accident	Small-bet attacker: entry won 28/32 long matches. Trap attacker: 16/32 long, 15/32 short	Trap weakness under test (step 17)
+15	Solver check off after the flop against fixed-rule discarders	The solver assumes the opponent threw away its worst card	vs such bots: -12 points (se 3.3) Stage 2, -12 (se 4.6) Stage 1, 96 matches each	Rejected
+16	Preflop table with exact card removal	The table counted opponent hands sharing a card with ours (+1.6 to +1.9 points of equity for K-K-Q)	lab/gen_pre2.py with a brute-force self-test	Under test
+17	Slow-play rate learnt as P(passive | strong hand)	It was learnt as P(strong hand | passive), too small by about P(strong) / P(passive)	Same prior, so play before the first showdown is unchanged	Under test
+18	Three corrections where real bets meet the solver tree	Min bets mapped onto a third-pot bet forced folds; all-in-only nodes dropped every raise size; a 4% cut split raise shares	lab/candidates/fix24.py	Under test
+19	No solver check when there is nothing to call	Against callers the check blocked value bets and forced bluffs	Step 15 showed removing the check can lose chips; needs the strongest evidence	Under test

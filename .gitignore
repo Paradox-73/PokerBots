@@ -1,0 +1,15 @@
+# organisers' material (rulebook, protocol, problem statement, starter kit): not ours to redistribute
+*.pdf
+*.zip
+docs/problem_statement.*
+docs/protocol.*
+docs/rulebook.*
+docs/starter_kit/
+docs/superseded/
+# early entry point of the first framework, replaced by submission/bot.py
+/bot.py
+dist/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.npz

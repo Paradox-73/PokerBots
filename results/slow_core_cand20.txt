@@ -1,0 +1,16 @@
+c8e221e706989216f7303ba65c75ed80  ~/synergy_pokerbots/cand20.zip
+== stage 1 seed 21, 1/6-speed core
+  A  bot/bot.py                       net  +11223   time used  50.17 s (bank 30 s per leg)   notices 0
+  B  ../kit2/example_bots/random_bot.py net  -11223   time used   0.55 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+wall 61.99 s
+   our stderr lines: 0
+== stage 2 seed 22, 1/6-speed core
+  A  bot/bot.py                       net  +36675   time used 129.25 s (bank 75 s per leg)   notices 0
+  B  ../kit2/example_bots/random_bot.py net  -36675   time used   1.64 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+wall 143.02 s
+   our stderr lines: 0
+SLOW6DONE

@@ -1,0 +1,50 @@
+stage 2, 488 matches per version on common seeds
+opponent                cand19            cand20
+barrel            4.0/4   +1000      4.0/4   +1000
+call              4.0/4   +1000      4.0/4   +1000
+cfr2              4.0/4    +641      4.0/4    +935
+cfrS             26.0/40   +377     30.0/40   +374
+f1                4.0/4   +1000      4.0/4   +1000
+f10              39.0/40   +952     40.0/40   +979
+f11              36.0/40   +701     36.0/40   +764
+f2                4.0/4   +1000      4.0/4   +1000
+f3               39.0/40   +886     40.0/40   +939
+f4                4.0/4    +909      3.0/4    +720
+f5                4.0/4   +1000      4.0/4   +1000
+f6                4.0/4    +986      3.0/4    +710
+f7               25.0/40   +287     29.0/40   +319
+f8                4.0/4   +1000      4.0/4   +1000
+rival_c             4.0/4   +1000      4.0/4   +1000
+jammer            4.0/4   +1000      4.0/4   +1000
+lag               4.0/4   +1000      4.0/4   +1000
+locker           37.0/40   +809     31.0/40   +757
+loose             4.0/4   +1000      4.0/4   +1000
+maniac            4.0/4   +1000      4.0/4   +1000
+minraise          4.0/4   +1000      4.0/4   +1000
+nit               4.0/4   +1000      4.0/4    +988
+rival_a             38.0/40   +897     34.0/40   +811
+passive           4.0/4   +1000      4.0/4   +1000
+potodds           4.0/4   +1000      4.0/4   +1000
+random            4.0/4   +1000      4.0/4   +1000
+scared            4.0/4   +1000      4.0/4   +1000
+shove             4.0/4   +1000      4.0/4   +1000
+rival_b           34.0/40   +597     31.0/40   +591
+tight             4.0/4   +1000      4.0/4   +1000
+rival_a2        29.0/40   +611     27.0/40   +522
+rival_b2      36.0/40   +810     39.0/40   +874
+cand19   points  427.0  vs cand19  +0.0 (se 0.0)  capped/match vs cand19   +0.0 (se 0.0)  forfeit lines 0  notices 0  max time 68.7 s
+cand20   points  423.0  vs cand19  -4.0 (se 9.4)  capped/match vs cand19   -1.1 (se 22.9)  forfeit lines 0  notices 0  max time 67.4 s
+stage 1, 480 matches per version on common seeds
+opponent                cand19            cand20
+cfrS             36.0/48   +189     38.0/48   +241
+f10              43.0/48   +302     47.0/48   +336
+f11              42.0/48   +257     34.0/48   +162
+f3               40.0/48   +288     46.0/48   +325
+f7               31.0/48    +97     26.0/48    +13
+locker           31.0/48   +226     33.0/48   +270
+rival_a             34.0/48   +233     34.0/48   +277
+rival_b           37.0/48   +214     40.0/48   +200
+rival_a2        28.0/48   +213     26.0/48   +166
+rival_b2      35.0/48   +244     40.0/48   +295
+cand19   points  357.0  vs cand19  +0.0 (se 0.0)  capped/match vs cand19   +0.0 (se 0.0)  forfeit lines 0  notices 0  max time 18.9 s
+cand20   points  364.0  vs cand19  +7.0 (se 12.5)  capped/match vs cand19   +1.9 (se 14.3)  forfeit lines 0  notices 0  max time 18.8 s

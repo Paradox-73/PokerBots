@@ -1,0 +1,10 @@
+S2 low_f10    n 24  A 24.0 mean +3298   B 24.0 mean +3331
+S2 low_f11    n 24  A 24.0 mean +2317   B 21.0 mean +2348
+S2 low_rival_a   n 24  A 24.0 mean +3281   B 21.0 mean +3205
+S2 low_rival_b n 24  A 23.0 mean  +987   B 17.0 mean  +627
+S2 all n 96  points B-A -12.0 (se 3.3)  capped/match B-A -158.2 (se 40.9)
+S1 low_f10    n 24  A 24.0 mean +1385   B 24.0 mean +1406
+S1 low_f11    n 24  A 22.0 mean +1059   B 15.0 mean  +483
+S1 low_rival_a   n 24  A 20.0 mean +1314   B 20.0 mean +1522
+S1 low_rival_b n 24  A 19.0 mean  +409   B 14.0 mean  +157
+S1 all n 96  points B-A -12.0 (se 4.6)  capped/match B-A -68.4 (se 31.0)
