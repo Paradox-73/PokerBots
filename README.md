@@ -1,8 +1,8 @@
 <div align="center">
 
-# hakari: a Discard Hold'em bot
+# Hakari: a Discard Hold'em bot
 
-**Synergy '26 Pokerbots, IIIT Bangalore. Team hakari.**
+**Synergy '26 Pokerbots, IIIT Bangalore. Team Hakari.**
 
 [![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![NumPy only](https://img.shields.io/badge/Dependencies-stdlib%20%2B%20NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white)](https://numpy.org/)
@@ -14,7 +14,7 @@
 
 </div>
 
-This repository is team hakari's entry for the Pokerbots event of Synergy '26. The game is Discard Hold'em: heads-up no-limit Hold'em with three hole cards, where each player throws one card away face up after the flop betting. The submission is a single file, [`submission/bot.py`](submission/bot.py). It uses only the Python standard library and NumPy.
+This repository is team Hakari's entry for the Pokerbots event of Synergy '26. The game is Discard Hold'em: heads-up no-limit Hold'em with three hole cards, where each player throws one card away face up after the flop betting. The submission is a single file, [`submission/bot.py`](submission/bot.py). It uses only the Python standard library and NumPy.
 
 The bot makes every decision by expected value. It estimates its equity against a range of opponent hands, and it learns from this opponent's actions how often they fold, call and raise. A precomputed game-theory strategy, trained with counterfactual regret minimisation (CFR), follows every hand. When that strategy would almost never make a move in the current spot, the move is dropped. The result plays like an exploitative bot that stays close to sound play.
 
@@ -41,7 +41,7 @@ All numbers come from matches on the organisers' engine, in the official two-leg
 
 | Rank | Bot | Match points | Capped chips |
 |---:|---|---:|---:|
-| 1 | **hakari (this bot)** | **91.0 of 104** | **+76,217** |
+| 1 | **Hakari (this bot)** | **91.0 of 104** | **+76,217** |
 | 2 | f11, rival written from the official documents | 69.0 | +43,930 |
 | 3 | cfrS, our CFR solver playing alone | 66.0 | +6,014 |
 | 4 | f7, a second, independent CFR solver | 65.0 | +39,468 |
@@ -160,7 +160,7 @@ The trainer and the abstraction are in [`solver/`](solver/), and [`solver/NOTES.
 | Training | Chance-sampled discounted CFR (alpha 1.5, beta 0, gamma 2) on 19.2 M pre-dealt deals, NumPy passes over the whole tree, 14 worker processes |
 | Real bets onto the tree | Randomised pseudo-harmonic mapping between the two nearest abstract sizes, fixed for the rest of the hand |
 
-Playing alone, the solver came third in the round robin above. It is hard to beat, and it never adapts to a weak opponent. Inside hakari it serves as the safety check described above.
+Playing alone, the solver came third in the round robin above. It is hard to beat, and it never adapts to a weak opponent. Inside Hakari it serves as the safety check described above.
 
 ## How we tested
 
@@ -245,4 +245,7 @@ How the bot handles time: the solver view runs only while the match is ahead of 
 
 ## Team
 
-Team hakari, Synergy '26 Pokerbots, IIIT Bangalore.
+Team Hakari, Synergy '26 Pokerbots, IIIT Bangalore:
+
+- Bhavya Jain
+- Kanav Bhardwaj
