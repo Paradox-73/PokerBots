@@ -1,0 +1,33 @@
+Final attacker round: cand41 against every test opponent built to beat the bot, S2 seeds 901-916, both legs.
+A = cand29 on the same seeds (cand36 for the min-raise wrappers). f15/nj_* near-all-in bets, ob* pot-multiple overbets, fz* random sizes (fzb bluffs), sw_* style switchers, iso_* raise every limp, mr_* minimum re-raises, base = cand20.
+
+S2 base       seeds  16  rows A  16 B  16  wins A   8.0 B   9.0  capped A    -4 B  +208  B-A  +212
+S2 f15        seeds  16  rows A  16 B  16  wins A   8.0 B  12.0  capped A   +44 B  +429  B-A  +384
+S2 fz         seeds  16  rows A  16 B  16  wins A  11.0 B  11.0  capped A  +243 B  +242  B-A    -0
+S2 fzb        seeds  16  rows A  16 B  16  wins A   7.0 B  13.0  capped A  -238 B  +332  B-A  +570
+S2 fzf        seeds  16  rows A  16 B  16  wins A   6.0 B  10.0  capped A  -242 B  +312  B-A  +554
+S2 iso_c20    seeds  16  rows A  16 B  16  wins A   7.5 B   8.0  capped A  -245 B  +154  B-A  +399
+S2 iso_f11    seeds  16  rows A  16 B  16  wins A  13.0 B  14.0  capped A  +607 B  +716  B-A  +109
+S2 nj_bluff   seeds  16  rows A  16 B  16  wins A   9.0 B  14.0  capped A  +147 B  +568  B-A  +421
+S2 nj_flop    seeds  16  rows A  16 B  16  wins A   9.0 B  12.0  capped A  +126 B  +380  B-A  +254
+S2 nj_l1      seeds  16  rows A  16 B  16  wins A  10.0 B  11.0  capped A  +106 B  +451  B-A  +345
+S2 nj_l15     seeds  16  rows A  16 B  16  wins A   6.0 B   9.0  capped A  -177 B  +217  B-A  +394
+S2 nj_l6      seeds  16  rows A  16 B  16  wins A   6.0 B  12.0  capped A  -171 B  +332  B-A  +503
+S2 nj_pre     seeds  16  rows A  16 B  16  wins A   8.0 B  12.0  capped A  +132 B  +284  B-A  +152
+S2 ob2        seeds  16  rows A  16 B  16  wins A   3.0 B  10.0  capped A  -347 B  +135  B-A  +482
+S2 ob2f       seeds  16  rows A  16 B  16  wins A   8.0 B   9.0  capped A  +103 B   +65  B-A   -38
+S2 ob4        seeds  16  rows A  16 B  16  wins A   8.0 B   8.0  capped A   -77 B  +180  B-A  +257
+S2 sw_mc      seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B +1000  B-A    +0
+S2 sw_mn      seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B +1000  B-A    +0
+S2 sw_nc      seeds  16  rows A  16 B  16  wins A  15.0 B  15.0  capped A  +715 B  +520  B-A  -195
+S2 sw_nm      seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B +1000  B-A    +0
+S2 all 320 seeds: points B-A +46.5 (se 10.5)  capped/match B-A +240.1 (se 46.1)
+
+S2 mr_f11     seeds  16  rows A  16 B  16  wins A  14.5 B  14.0  capped A  +828 B  +776  B-A   -52
+S2 mr_rival_a    seeds  16  rows A  16 B  16  wins A  15.0 B  16.0  capped A  +922 B  +945  B-A   +23
+S2 mr_rival_b  seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A  +920 B  +918  B-A    -1
+S2 all 48 seeds: points B-A +0.5 (se 1.1)  capped/match B-A -9.9 (se 40.5)
+
+Absolute: cand41 wins per attacker
+base 9/16 f15 12/16 fz 11/16 fzb 13/16 fzf 10/16 iso_c20 8/16 iso_f11 14/16 mr_f11 14/16 mr_rival_a 16/16 mr_rival_b 16/16 nj_bluff 14/16 nj_flop 12/16 nj_l1 11/16 nj_l15 9/16 nj_l6 12/16 nj_pre 12/16 ob2 10/16 ob2f 9/16 ob4 8/16 sw_mc 16/16 sw_mn 16/16 sw_nc 15/16 sw_nm 16/16
+total 283 of 368 won; counted from the 368 match rows: 0 forfeits, 0 with engine notices, 0 without a result

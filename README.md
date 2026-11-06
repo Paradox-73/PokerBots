@@ -50,6 +50,10 @@ All numbers come from matches on the organisers' engine, in the official two-leg
 
 The bot beat every other bot head to head except f7, where it won 4 of 8. Over all test runs it wins about two thirds of long matches against f7, which is its hardest opponent.
 
+**Stage 2 round robin of the 8 strongest, played by `cand41`** (6 deal sets per pair, 168 matches, 0 forfeits, [`results/round_robin_8.txt`](results/round_robin_8.txt)): first with 34 of 42 points, ahead of f11 (26), rival_a2 (25) and f7 (22). It won the head-to-head against all seven others, including both blind rivals (5 of 6 each) and f7 (5 of 6).
+
+**Final attacker round, `cand41`** ([`results/attackers_vs_cand41.txt`](results/attackers_vs_cand41.txt)): against all 23 test opponents built to beat the bot, `cand41` won 283 of 368 long matches with 0 forfeits. On the same deals it scored +46.5 match points (se 10.5) over `cand29` across 20 of them, and was level with `cand36` against the 3 min-raise bots.
+
 - **Bots built to beat it.** Bots written with the full source code in hand each attack one weakness. Most are copies of the bot with one habit added, so any edge they gain comes from that habit alone.
   - A bot that bets small on every flop lost 28 of 32 long matches to `cand20`. A bot that sets traps, checking strong hands and raising later, came out even with `cand20` ([`results/exploiters_vs_cand20.txt`](results/exploiters_vs_cand20.txt)).
   - A bot that bets all-in minus 2 chips on the turn and river beat `cand20` in 31 of 32 long matches. `cand29` fixed the cause and won 17 of 32 against it, +16 match points (se 3.2) ([`results/near_allin_attacker.txt`](results/near_allin_attacker.txt)).

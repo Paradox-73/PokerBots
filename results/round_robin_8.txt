@@ -1,0 +1,24 @@
+Stage 2 round robin of the 8 strongest bots: the entry (cand41), f7 and cfrS (CFR solvers), f9 (MCCFR rival), f11 (rival from the documents), rival_a2, and the blind rivals f16 and f17.
+Every pair, seeds 1101-1106, both legs, 168 matches.
+
+bot           points    of    capped
+cand41          34.0    42    +22993
+f11             26.0    42     +9046
+rival_a2        25.0    42     -9263
+f7              22.0    42     +7071
+f17             19.0    42     +2257
+cfrS            18.0    42     -6665
+f16             14.0    42     -7699
+f9              10.0    42    -17740
+forfeit lines by pair: none
+
+wins of row bot vs column bot
+             cand41    f11 rival_     f7    f17   cfrS    f16     f9
+cand41            -  6.0/6  4.0/6  5.0/6  5.0/6  4.0/6  5.0/6  5.0/6
+f11           0.0/6      -  6.0/6  0.0/6  5.0/6  5.0/6  6.0/6  4.0/6
+rival_a2      2.0/6  0.0/6      -  4.0/6  5.0/6  4.0/6  6.0/6  4.0/6
+f7            1.0/6  6.0/6  2.0/6      -  2.0/6  4.0/6  3.0/6  4.0/6
+f17           1.0/6  1.0/6  1.0/6  4.0/6      -  2.0/6  5.0/6  5.0/6
+cfrS          2.0/6  1.0/6  2.0/6  2.0/6  4.0/6      -  3.0/6  4.0/6
+f16           1.0/6  0.0/6  0.0/6  3.0/6  1.0/6  3.0/6      -  6.0/6
+f9            1.0/6  2.0/6  2.0/6  2.0/6  1.0/6  2.0/6  0.0/6      -
