@@ -1,0 +1,24 @@
+General field, cand36 vs cand29, hard 10 bots, seeds 401-424, both legs (B - A per seed, capped chips)
+
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  19.0 B  19.0  capped A  +564 B  +470  B-A   -94
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A  +998 B  +976  B-A   -22
+S2 f11        seeds  24  rows A  24 B  24  wins A  17.0 B  22.0  capped A  +438 B  +763  B-A  +325
+S2 f3         seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +912 B  +933  B-A   +20
+S2 f7         seeds  24  rows A  24 B  24  wins A  13.0 B  13.0  capped A  +145 B   +65  B-A   -80
+S2 locker     seeds  24  rows A  24 B  24  wins A  21.0 B  23.0  capped A  +806 B  +913  B-A  +107
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  22.0 B  20.0  capped A  +904 B  +801  B-A  -102
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  21.0 B  22.0  capped A  +690 B  +654  B-A   -36
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  17.0 B  21.0  capped A  +622 B  +790  B-A  +168
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  21.0 B  22.0  capped A  +750 B  +833  B-A   +83
+S2 all 240 seeds: points B-A +11.0 (se 7.0)  capped/match B-A +37.0 (se 34.8)
+S1 cfrS       seeds  24  rows A  24 B  24  wins A  17.0 B  18.0  capped A  +190 B  +225  B-A   +35
+S1 f10        seeds  24  rows A  24 B  24  wins A  22.0 B  22.0  capped A  +330 B  +340  B-A   +10
+S1 f11        seeds  24  rows A  24 B  24  wins A  13.0 B  14.0  capped A   +32 B   +97  B-A   +65
+S1 f3         seeds  24  rows A  24 B  24  wins A  19.0 B  20.0  capped A  +226 B  +246  B-A   +20
+S1 f7         seeds  24  rows A  24 B  24  wins A  15.0 B  11.0  capped A   +82 B   -48  B-A  -129
+S1 locker     seeds  24  rows A  24 B  24  wins A  11.0 B  17.0  capped A  +164 B  +245  B-A   +81
+S1 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  16.0  capped A  +307 B  +243  B-A   -64
+S1 rival_b     seeds  24  rows A  24 B  24  wins A  18.0 B  16.0  capped A  +196 B  +108  B-A   -88
+S1 rival_a2  seeds  24  rows A  24 B  24  wins A  14.0 B  11.0  capped A  +197 B  +139  B-A   -58
+S1 rival_b2 seeds  24  rows A  24 B  24  wins A  18.0 B  19.0  capped A  +247 B  +247  B-A    -0
+S1 all 240 seeds: points B-A -3.0 (se 9.1)  capped/match B-A -12.9 (se 20.9)

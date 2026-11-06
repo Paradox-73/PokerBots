@@ -1,0 +1,11 @@
+Blind rivals: f16 and f17 were written from the organisers documents only, without access to this bot or its results.
+S2 and S1 seeds 1001-1032, both legs. wins / matches, mean net chips.
+
+cand29 S1 f16 25/32 mean +593
+cand29 S1 f17 17/32 mean +239
+cand29 S2 f16 29/32 mean +2106
+cand29 S2 f17 26/32 mean +1195
+cand36 S1 f16 27/32 mean +670
+cand36 S1 f17 18/32 mean +193
+cand36 S2 f16 29/32 mean +1800
+cand36 S2 f17 28/32 mean +1227

@@ -1,0 +1,25 @@
+== np126 stage 1 vs random seed 1
+  B  ../repo/docs/starter_kit/example_bots/random_bot.py net  -13263   time used   0.19 s of 60 s   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+Logs: npc_cand36_126/logs_1/match.log, A_stderr.txt, B_stderr.txt
+engine stderr lines: 0
+== np126 stage 2 vs starter seed 4
+  B  ../repo/docs/starter_kit/bot.py  net  -48244   time used   0.72 s of 150 s   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+Logs: npc_cand36_126/logs_4/match.log, A_stderr.txt, B_stderr.txt
+engine stderr lines: 0
+== np123 stage 1 vs random seed 1
+  B  ../repo/docs/starter_kit/example_bots/random_bot.py net   -8689   time used   0.17 s of 60 s   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+Logs: npc_cand36_123/logs_1/match.log, A_stderr.txt, B_stderr.txt
+engine stderr lines: 0
+== np123 stage 2 vs starter seed 4
+  B  ../repo/docs/starter_kit/bot.py  net  -48515   time used   0.77 s of 150 s   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+Logs: npc_cand36_123/logs_4/match.log, A_stderr.txt, B_stderr.txt
+engine stderr lines: 0
+NPDONE

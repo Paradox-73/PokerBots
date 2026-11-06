@@ -1,0 +1,88 @@
+3b322b280e246e5a1b884a4b20e82c37  cand36.zip
+d9294bd16d33bdf325212c3f71910816  bot/bot.py
+Python 3.11.15
+numpy 2.4.6
+== stage 1 vs random
+  A  bot/bot.py                       net  +10186   time used  11.51 s (bank 30 s per leg)   notices 0
+  B  example_bots/random_bot.py       net  -10186   time used   0.11 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+	Maximum resident set size (kbytes): 74372
+   our stderr lines per leg: 0 0
+== stage 1 vs starter
+  A  bot/bot.py                       net  +20453   time used  21.94 s (bank 30 s per leg)   notices 0
+  B  bot.py                           net  -20453   time used   0.22 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+	Maximum resident set size (kbytes): 74244
+   our stderr lines per leg: 0 0
+== stage 2 vs random
+  A  bot/bot.py                       net  +29225   time used  47.44 s (bank 75 s per leg)   notices 0
+  B  example_bots/random_bot.py       net  -29225   time used   0.45 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+	Maximum resident set size (kbytes): 74628
+   our stderr lines per leg: 0 0
+== stage 2 vs starter
+  A  bot/bot.py                       net  +47174   time used  70.26 s (bank 75 s per leg)   notices 0
+  B  bot.py                           net  -47174   time used   0.71 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+	Maximum resident set size (kbytes): 74496
+   our stderr lines per leg: 0 0
+== stage 2 vs starter
+  A  bot/bot.py                       net  +51432   time used  70.57 s (bank 75 s per leg)   notices 0
+  B  bot.py                           net  -51432   time used   0.73 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+	Maximum resident set size (kbytes): 74496
+   our stderr lines per leg: 0 0
+== stage 1 vs random
+  A  bot/bot.py                       net  +12888   time used  13.33 s (bank 30 s per leg)   notices 0
+  B  example_bots/random_bot.py       net  -12888   time used   0.13 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+	Maximum resident set size (kbytes): 74368
+   our stderr lines per leg: 0 0
+== start-up to exit, 5 runs (limit 5 s)
+0.90 s
+0.93 s
+0.92 s
+0.91 s
+0.92 s
+== unknown message types and fields, stage 1 vs random
+  A  bot/bot.py                       net  +12226   time used  14.56 s (bank 30 s per leg)   notices 0
+  B  example_bots/random_bot.py       net  -12226   time used   0.15 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+	Maximum resident set size (kbytes): 74376
+   our stderr lines per leg: 0 0
+== unknown message types and fields, stage 2 vs starter
+  A  bot/bot.py                       net  +54867   time used  69.78 s (bank 75 s per leg)   notices 0
+  B  bot.py                           net  -54867   time used   0.74 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+	Maximum resident set size (kbytes): 74624
+   our stderr lines per leg: 0 0
+== 998-hand stage 2 match vs starter
+  A  bot/bot.py                       net  +51241   time used  68.59 s (bank 75 s per leg)   notices 0
+  B  bot.py                           net  -51241   time used   0.69 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+	Maximum resident set size (kbytes): 74756
+   our stderr lines per leg: 0 0
+== stage 2 vs rival_c rival, core shared with two CPU hogs
+  A  bot/bot.py                       net  +16698   time used 126.39 s (bank 75 s per leg)   notices 0
+  B  rival_c           net  -16698   time used 105.65 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+	Maximum resident set size (kbytes): 75012
+   our stderr lines per leg: 0 0
+== stage 1 vs rival_c rival, same slowed core
+  A  bot/bot.py                       net   +6951   time used  50.83 s (bank 30 s per leg)   notices 0
+  B  rival_c           net   -6951   time used  40.64 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+	Maximum resident set size (kbytes): 74756
+   our stderr lines per leg: 0 0
+NEWCHECKDONE

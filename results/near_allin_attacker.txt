@@ -1,0 +1,7 @@
+Near-all-in attacker f15 (a copy of the bot that also bets all-in minus 2 chips on the turn and river with strong hands)
+S2 and S1, seeds 901-932, both legs. A = cand20 (the previous entry), B = cand29 (near-all-in fix).
+
+S2 f15        n 32  A  1.0 mean -1776   B 17.0 mean  +135
+S2 all n 32  points B-A +16.0 (se 3.2)  capped/match B-A +884.7 (se 141.6)
+S1 f15        n 32  A  4.0 mean  -623   B 15.0 mean    -6
+S1 all n 32  points B-A +11.0 (se 3.7)  capped/match B-A +276.2 (se 73.7)

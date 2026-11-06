@@ -532,13 +532,18 @@ class Bot:
         thr_r = 1.0 - p[RS:].sum()
         if a >= RS:
             thr = 1.0 - p[a:].sum()
-            e = self.opp.eps_agg(st)
+            w = self.opp.eps_agg(st)  # measured share of its shown aggressive hands that were below the slice
+            m = min(max(1.0 - thr, 1e-3), 1 - 1e-3)
+            e = min(w, w * m / ((1 - m) * (1 - w)))  # the weight that gives that share after this action
             L = e + (1 - e) * sig(x, thr)
             h.events.append((st, 0, thr, x))
         elif h.bets[1] < h.bets[0]:  # a call
             e = self.opp.eps_pas(st)
-            L = e + (1 - e) * sig(x, p[FOLD]) * (1 - 0.7 * sig(x, thr_r))
-            h.events.append((st, 1, thr_r, x))
+            # At the raise cap, or with us all-in (stacks start at 200), calling was its only way to continue.
+            can_raise = h.raises + (st == 0) < 4 and h.commit[0] < 200
+            L = e + (1 - e) * sig(x, p[FOLD]) * (1 - 0.7 * sig(x, thr_r) * can_raise)
+            if can_raise:
+                h.events.append((st, 1, thr_r, x))
         else:  # a check
             e = self.opp.eps_pas(st)
             L = e + (1 - e) * (1 - sig(x, thr_r))
@@ -654,7 +659,7 @@ class Bot:
         if "check" in legal:
             options.append((self.ev_check(st, ip, P, behind, eq, window), "check", None))
         if "call" in legal:
-            ev = self.value(eq, P + tc, behind - tc, st, ip) - tc
+            ev = self.value(eq, P + tc, behind, st, ip) - tc  # behind is already the stack after calling
             if st == 0 and h.button and h.raises == 0:  # a limp lets the big blind raise
                 r = o.dist(0, 0, 0)[RS:].sum()
                 ev = (1 - r) * ev + r * -tc
@@ -685,6 +690,9 @@ class Bot:
         ratio = faced / max(1.0, P + req["to_call"])
         p = self.opp.dist(st, h.raises + 1, sz_bucket(ratio))
         f, c, r = float(p[FOLD]), float(p[PASS]), float(p[RS:].sum())
+        price = faced / max(1.0, P + add + faced)
+        if price < 0.1:  # a raise that costs the opponent almost nothing to call is not folded to
+            f, c = f * price / 0.1, c + f * (1 - price / 0.1)
         allin = to >= req["max_raise"]
         if allin or req["raises_left"] <= 1:
             c, r = c + r, 0.0
@@ -13775,7 +13783,8 @@ def solver_view(solver, req):
             return None
         # A raise the tree had no size for was replayed as an all-in: the solver's split is then
         # its answer to a shove, not to this bet.
-        if req.get("opp_stack", 0) > 0 and all(a in ("f", "c") for a in node.actions):
+        # A bet that leaves the bettor under a fifth of the pot behind is a shove in all but name.
+        if req.get("opp_stack", 0) > 0.2 * (req["pot"] + req["to_call"]) and all(a in ("f", "c") for a in node.actions):
             return None
         street = sb.STREET[req["street"]]
         bucket, _ = solver.features(street, [sb.A.card_id(c) for c in req["board"]])

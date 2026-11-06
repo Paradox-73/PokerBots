@@ -1,0 +1,28 @@
+Value big-bet attackers vs cand29 and cand36 (cand36 = cand29 + forced-call fix + call-EV fix + range weight from the measured weak share)
+base = cand20, fzf = random size from the flop, ob2 = 2x pot turn and river, ob2f = 2x pot from the flop. S2 seeds 901-932, both legs.
+
+S2 base       seeds  32  rows A  32 B  32  wins A  16.0 B  22.0  capped A   -16 B  +235  B-A  +251
+S2 fzf        seeds  32  rows A  32 B  32  wins A  10.0 B  20.0  capped A  -293 B  +199  B-A  +493
+S2 ob2        seeds  32  rows A  32 B  32  wins A  14.0 B  19.0  capped A  -108 B  +243  B-A  +351
+S2 ob2f       seeds  32  rows A  32 B  32  wins A  11.0 B  22.0  capped A  -131 B  +282  B-A  +413
+S2 all 128 seeds: points B-A +32.0 (se 7.5)  capped/match B-A +376.9 (se 80.8)
+
+Where cand29 lost (32 logged matches vs ob2 and fzf): gain over folding per answer to a bet of 1.2x pot or more
+flop     call   1.2-2x  n  459  gain vs folding   -11.3 per spot (se   5.2)  total   -5184
+flop     call   2-4x    n   32  gain vs folding    -3.0 per spot (se  28.5)  total     -95
+flop     call   4x+     n   51  gain vs folding   -20.9 per spot (se  25.3)  total   -1066
+flop     call   all     n  542  gain vs folding   -11.7 per spot (se   5.3)  total   -6345
+flop     fold   all     n 1334  gain vs folding    +0.0 per spot (se   0.0)  total      +0
+flop     raise  all     n  183  gain vs folding   -26.0 per spot (se  11.3)  total   -4750
+river    call   1.2-2x  n   61  gain vs folding   +46.0 per spot (se  14.9)  total   +2804
+river    call   2-4x    n   42  gain vs folding   -52.5 per spot (se  13.0)  total   -2205
+river    call   4x+     n   24  gain vs folding   -31.6 per spot (se  29.8)  total    -759
+river    call   all     n  127  gain vs folding    -1.3 per spot (se  10.9)  total    -160
+river    fold   all     n  531  gain vs folding    +0.0 per spot (se   0.0)  total      +0
+river    raise  all     n   49  gain vs folding   +31.0 per spot (se  14.5)  total   +1520
+turn     call   1.2-2x  n  201  gain vs folding    +8.5 per spot (se   8.3)  total   +1701
+turn     call   2-4x    n   31  gain vs folding   -12.0 per spot (se  29.3)  total    -372
+turn     call   4x+     n   31  gain vs folding   -18.6 per spot (se  28.9)  total    -577
+turn     call   all     n  263  gain vs folding    +2.9 per spot (se   8.0)  total    +752
+turn     fold   all     n  831  gain vs folding    +0.0 per spot (se   0.0)  total      +0
+turn     raise  all     n   99  gain vs folding   -48.3 per spot (se  12.8)  total   -4783
