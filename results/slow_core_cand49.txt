@@ -1,0 +1,16 @@
+43b371153b9ce4e10743a421ffd99347  cand49.zip
+== stage 1 seed 21, 1/6-speed core
+  A  bot/bot.py                       net  +11051   time used  50.71 s (bank 30 s per leg)   notices 0
+  B  ../kit2/example_bots/random_bot.py net  -11051   time used   0.55 s (bank 30 s per leg)   notices 0
+Result: A wins
+Capped delta: A +400, B -400 (C = 400)
+wall 62.46 s
+   our stderr lines: 0
+== stage 2 seed 22, 1/6-speed core
+  A  bot/bot.py                       net  +35268   time used 128.17 s (bank 75 s per leg)   notices 0
+  B  ../kit2/example_bots/random_bot.py net  -35268   time used   1.47 s (bank 75 s per leg)   notices 0
+Result: A wins
+Capped delta: A +1000, B -1000 (C = 1000)
+wall 141.88 s
+   our stderr lines: 0
+SLOW6DONE

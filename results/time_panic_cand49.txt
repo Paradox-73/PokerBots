@@ -1,0 +1,13 @@
+Time-panic test of the discard-result guard (build/fix38.py). Lab copies of the organisers' engine with the
+Stage 1 time bank cut to the value shown (official: 30000 ms per leg); bot A against frozen/f7, seed 985.
+Below 1000 ms left the bot answers at once (time panic). cand41 is the version before the guard, cand49 after.
+cand41 bank 900 ms: our stderr lines 181 |  A vers/cand41/bot.py net -614 time used 0.00 s (bank 1 s per leg) notices 0 Capped delta: A -400, B +400 (C = 400) 
+cand49 bank 900 ms: our stderr lines 0 |  A vers/cand49/bot.py net -644 time used 0.00 s (bank 1 s per leg) notices 0 Capped delta: A -400, B +400 (C = 400) 
+cand41 bank 1100 ms: our stderr lines 8 |  A vers/cand41/bot.py net -159 time used 0.27 s (bank 1 s per leg) notices 0 Capped delta: A -159, B +159 (C = 400) 
+cand49 bank 1100 ms: our stderr lines 0 |  A vers/cand49/bot.py net -354 time used 0.28 s (bank 1 s per leg) notices 0 Capped delta: A -354, B +354 (C = 400) 
+cand41 bank 1500 ms: our stderr lines 0 |  A vers/cand41/bot.py net -547 time used 0.18 s (bank 2 s per leg) notices 0 Capped delta: A -400, B +400 (C = 400) 
+cand49 bank 1500 ms: our stderr lines 0 |  A vers/cand49/bot.py net -141 time used 0.31 s (bank 2 s per leg) notices 0 Capped delta: A -141, B +141 (C = 400) 
+cand41 bank 4000 ms: our stderr lines 0 |  A vers/cand41/bot.py net -767 time used 2.35 s (bank 4 s per leg) notices 0 Capped delta: A -400, B +400 (C = 400) 
+cand49 bank 4000 ms: our stderr lines 0 |  A vers/cand49/bot.py net -285 time used 1.70 s (bank 4 s per leg) notices 0 Capped delta: A -285, B +285 (C = 400) 
+cand41 stderr line (bank 900 ms), first of 181:
+error: TypeError("'NoneType' object is not subscriptable")

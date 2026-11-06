@@ -1,0 +1,79 @@
+Candidates tested after cand41, each against cand41 on the same deals (B-A = candidate minus cand41).
+Points: 1 per match won, 0.5 per tie. se: standard error over deal sets. Capped: chips per match clipped to
++-400 (Stage 1, S1) or +-1000 (Stage 2, S2).
+
+== cand44 = cand41 + A (no solver check facing an all-in). Near-all-in and overbet attackers, S2 seeds 901-916
+S2 base       seeds  16  rows A  16 B  16  wins A   9.0 B  10.0  capped A  +208 B  +232  B-A   +24
+S2 f15        seeds  16  rows A  16 B  16  wins A  12.0 B  12.0  capped A  +429 B  +381  B-A   -48
+S2 nj_bluff   seeds  16  rows A  16 B  16  wins A  14.0 B  13.0  capped A  +568 B  +548  B-A   -20
+S2 nj_flop    seeds  16  rows A  16 B  16  wins A  12.0 B  13.0  capped A  +380 B  +415  B-A   +35
+S2 nj_l1      seeds  16  rows A  16 B  16  wins A  11.0 B  11.0  capped A  +451 B  +200  B-A  -251
+S2 nj_l15     seeds  16  rows A  16 B  16  wins A   9.0 B  12.0  capped A  +217 B  +356  B-A  +139
+S2 nj_l6      seeds  16  rows A  16 B  16  wins A  12.0 B  10.0  capped A  +332 B  +293  B-A   -39
+S2 nj_pre     seeds  16  rows A  16 B  16  wins A  12.0 B  12.0  capped A  +284 B  +490  B-A  +205
+S2 ob2        seeds  16  rows A  16 B  16  wins A  10.0 B  12.0  capped A  +135 B  +508  B-A  +373
+S2 ob2f       seeds  16  rows A  16 B  16  wins A   9.0 B   9.0  capped A   +65 B  +247  B-A  +182
+S2 ob4        seeds  16  rows A  16 B  16  wins A   8.0 B   9.0  capped A  +180 B  +172  B-A    -8
+S2 all 176 seeds: points B-A +5.0 (se 8.3)  capped/match B-A +53.8 (se 62.5)
+
+== cand45 = cand41 + F2 (preflop actions counted once). Preflop-aggression bots, S2 seeds 801-816
+S2 pf_a       seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A  +997 B +1000  B-A    +3
+S2 pf_b       seeds  16  rows A  16 B  16  wins A  15.0 B  16.0  capped A  +870 B +1000  B-A  +130
+S2 pf_f10     seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B  +953  B-A   -47
+S2 pf_f11     seeds  16  rows A  16 B  16  wins A  16.0 B  15.0  capped A  +902 B  +801  B-A  -101
+S2 all 64 seeds: points B-A +0.0 (se 1.4)  capped/match B-A -3.8 (se 43.1)
+== cand45. Style-switching bots, S2 seeds 901-916
+S2 sw_mc      seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B +1000  B-A    +0
+S2 sw_mn      seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B +1000  B-A    +0
+S2 sw_nc      seeds  16  rows A  16 B  16  wins A  15.0 B  13.0  capped A  +520 B  +506  B-A   -13
+S2 sw_nm      seeds  16  rows A  16 B  16  wins A  16.0 B  16.0  capped A +1000 B +1000  B-A    +0
+S2 all 64 seeds: points B-A -2.0 (se 2.0)  capped/match B-A -3.3 (se 32.7)
+
+== cand46 = cand41 + separate counters for the limper facing our raise. cand20, S2 seeds 1601-1664
+S2 cand20     seeds  64  rows A  64 B  64  wins A  41.0 B  33.0  capped A  +236 B   +82  B-A  -154
+S2 all 64 seeds: points B-A -8.0 (se 5.2)  capped/match B-A -154.0 (se 106.4)
+
+== cand47 = cand46 + separate counters for the answer to our first bet after the opponent checked.
+== cand47. cand20, S2 seeds 1601-1664
+S2 cand20     seeds  64  rows A  64 B  64  wins A  41.0 B  41.0  capped A  +236 B  +234  B-A    -2
+S2 all 64 seeds: points B-A +0.0 (se 4.7)  capped/match B-A -2.4 (se 103.4)
+== cand47. 10 strongest test bots, S2 seeds 401-424
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  20.0 B  21.0  capped A  +470 B  +636  B-A  +166
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  23.0  capped A  +974 B  +954  B-A   -19
+S2 f11        seeds  24  rows A  24 B  24  wins A  22.0 B  21.0  capped A  +763 B  +756  B-A    -7
+S2 f3         seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +950 B  +994  B-A   +44
+S2 f7         seeds  24  rows A  24 B  24  wins A  13.0 B  13.0  capped A   +12 B   -33  B-A   -45
+S2 locker     seeds  24  rows A  24 B  24  wins A  21.0 B  20.0  capped A  +841 B  +833  B-A    -8
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  22.0  capped A  +718 B  +803  B-A   +85
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +766 B  +727  B-A   -39
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  16.0 B  18.0  capped A  +589 B  +641  B-A   +52
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +817 B  +904  B-A   +87
+S2 all 240 seeds: points B-A +4.0 (se 7.1)  capped/match B-A +31.6 (se 35.9)
+== cand47. Blind rivals f16 and f17, S2 and S1 seeds 1001-1032
+S2 f16        seeds  32  rows A  32 B  32  wins A  29.0 B  31.0  capped A  +754 B  +924  B-A  +170
+S2 f17        seeds  32  rows A  32 B  32  wins A  27.0 B  25.0  capped A  +682 B  +586  B-A   -97
+S2 all 64 seeds: points B-A +0.0 (se 3.5)  capped/match B-A +36.8 (se 91.2)
+S1 f16        seeds  32  rows A  32 B  32  wins A  23.0 B  24.0  capped A  +204 B  +225  B-A   +21
+S1 f17        seeds  32  rows A  32 B  32  wins A  22.0 B  21.0  capped A  +144 B  +103  B-A   -41
+S1 all 64 seeds: points B-A +0.0 (se 4.9)  capped/match B-A -9.9 (se 50.3)
+
+== cand48 = cand41 + separate counters for the answer to our first bet after the opponent checked (no limp part).
+== cand48. 10 strongest test bots, S2 seeds 401-424
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  20.0 B  19.0  capped A  +470 B  +465  B-A    -5
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  23.0  capped A  +974 B  +949  B-A   -25
+S2 f11        seeds  24  rows A  24 B  24  wins A  22.0 B  23.0  capped A  +763 B  +852  B-A   +89
+S2 f3         seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +950 B  +939  B-A   -11
+S2 f7         seeds  24  rows A  24 B  24  wins A  13.0 B  11.0  capped A   +12 B   -43  B-A   -54
+S2 locker     seeds  24  rows A  24 B  24  wins A  21.0 B  21.0  capped A  +841 B  +820  B-A   -20
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  19.0  capped A  +718 B  +764  B-A   +46
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +766 B  +823  B-A   +56
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  16.0 B  16.0  capped A  +589 B  +627  B-A   +38
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +817 B  +794  B-A   -23
+S2 all 240 seeds: points B-A -2.0 (se 6.3)  capped/match B-A +9.1 (se 32.3)
+== cand48. Blind rivals f16 and f17, S2 and S1 seeds 1001-1032
+S2 f16        seeds  32  rows A  32 B  32  wins A  29.0 B  31.0  capped A  +754 B  +865  B-A  +112
+S2 f17        seeds  32  rows A  32 B  32  wins A  27.0 B  26.0  capped A  +682 B  +501  B-A  -181
+S2 all 64 seeds: points B-A +1.0 (se 3.6)  capped/match B-A -34.9 (se 92.8)
+S1 f16        seeds  32  rows A  32 B  32  wins A  23.0 B  23.0  capped A  +204 B  +174  B-A   -30
+S1 f17        seeds  32  rows A  32 B  32  wins A  22.0 B  18.0  capped A  +144 B   +55  B-A   -90
+S1 all 64 seeds: points B-A -4.0 (se 4.7)  capped/match B-A -59.9 (se 47.7)

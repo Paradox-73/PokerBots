@@ -486,6 +486,8 @@ class Bot:
         sel = np.nonzero(TMASK & (1 << d))[0]
         col = np.argmax(TDISC[sel] == d, axis=1)
         pairs = PT[sel, col]
+        if h.Pk is None:  # a time panic skipped the flop tables: nothing to weigh
+            return
         w = np.bincount(pairs, h.W3[sel] * h.Pk[sel, col], NP)
         h.dead |= (1 << mine) | (1 << d)
         w[(PMASK & h.dead) != 0] = 0.0
