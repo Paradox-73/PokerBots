@@ -1,0 +1,32 @@
+General field, cand41 (cand36 + range slices read inside equity buckets + solver features rounded as in training) vs cand36
+hard 10 bots, seeds 401-424, both legs (B - A per seed, capped chips); then the blind rivals f16 and f17, seeds 1001-1032
+
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  19.0 B  20.0  capped A  +470 B  +470  B-A    -0
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A  +976 B  +974  B-A    -2
+S2 f11        seeds  24  rows A  24 B  24  wins A  22.0 B  22.0  capped A  +763 B  +763  B-A    +0
+S2 f3         seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +933 B  +950  B-A   +18
+S2 f7         seeds  24  rows A  24 B  24  wins A  13.0 B  13.0  capped A   +65 B   +12  B-A   -54
+S2 locker     seeds  24  rows A  24 B  24  wins A  23.0 B  21.0  capped A  +913 B  +841  B-A   -73
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  20.0  capped A  +801 B  +718  B-A   -83
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  22.0 B  23.0  capped A  +654 B  +766  B-A  +113
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  21.0 B  16.0  capped A  +790 B  +589  B-A  -201
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  22.0 B  23.0  capped A  +833 B  +817  B-A   -16
+S2 all 240 seeds: points B-A -4.0 (se 6.9)  capped/match B-A -29.9 (se 32.3)
+S1 cfrS       seeds  24  rows A  24 B  24  wins A  18.0 B  20.0  capped A  +225 B  +263  B-A   +38
+S1 f10        seeds  24  rows A  24 B  24  wins A  22.0 B  23.0  capped A  +340 B  +358  B-A   +18
+S1 f11        seeds  24  rows A  24 B  24  wins A  14.0 B  19.0  capped A   +97 B  +241  B-A  +144
+S1 f3         seeds  24  rows A  24 B  24  wins A  20.0 B  21.0  capped A  +246 B  +290  B-A   +44
+S1 f7         seeds  24  rows A  24 B  24  wins A  11.0 B  13.0  capped A   -48 B   +54  B-A  +101
+S1 locker     seeds  24  rows A  24 B  24  wins A  17.0 B  16.0  capped A  +245 B  +258  B-A   +13
+S1 rival_a       seeds  24  rows A  24 B  24  wins A  16.0 B  16.0  capped A  +243 B  +217  B-A   -26
+S1 rival_b     seeds  24  rows A  24 B  24  wins A  16.0 B  21.0  capped A  +108 B  +247  B-A  +140
+S1 rival_a2  seeds  24  rows A  24 B  24  wins A  11.0 B  15.0  capped A  +139 B  +201  B-A   +62
+S1 rival_b2 seeds  24  rows A  24 B  24  wins A  19.0 B  20.0  capped A  +247 B  +272  B-A   +25
+S1 all 240 seeds: points B-A +20.0 (se 8.5)  capped/match B-A +55.9 (se 20.3)
+
+S2 f16        seeds  32  rows A  32 B  32  wins A  29.0 B  29.0  capped A  +770 B  +754  B-A   -17
+S2 f17        seeds  32  rows A  32 B  32  wins A  28.0 B  27.0  capped A  +663 B  +682  B-A   +19
+S2 all 64 seeds: points B-A -1.0 (se 3.3)  capped/match B-A +1.1 (se 81.6)
+S1 f16        seeds  27  rows A  27 B  27  wins A  24.0 B  19.0  capped A  +287 B  +193  B-A   -94
+S1 f17        seeds  26  rows A  26 B  26  wins A  15.0 B  18.0  capped A   +87 B  +143  B-A   +56
+S1 all 53 seeds: points B-A -2.0 (se 4.5)  capped/match B-A -20.3 (se 51.6)

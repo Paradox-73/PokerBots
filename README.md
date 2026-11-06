@@ -35,7 +35,7 @@ The bot makes every decision by expected value. It estimates its equity against 
 
 ## Results at a glance
 
-All numbers come from matches on the organisers' engine, in the official two-leg format, on deals never used to tune the bot. The files in [`results/`](results/) hold the raw summaries. In those files the entry is called `cand36`, its test name. `cand20` and `cand29` are the two versions before it.
+All numbers come from matches on the organisers' engine, in the official two-leg format, on deals never used to tune the bot. The files in [`results/`](results/) hold the raw summaries. In those files the entry is called `cand41`, its test name. `cand20`, `cand29` and `cand36` are the versions before it.
 
 **Stage 2 round robin of the 14 strongest test bots**, played by `cand20` (500 duplicate deals per match, 8 deal sets per pair, 728 matches, [`results/round_robin_stage2.txt`](results/round_robin_stage2.txt)):
 
@@ -55,8 +55,8 @@ The bot beat every other bot head to head except f7, where it won 4 of 8. Over a
   - A bot that bets all-in minus 2 chips on the turn and river beat `cand20` in 31 of 32 long matches. `cand29` fixed the cause and won 17 of 32 against it, +16 match points (se 3.2) ([`results/near_allin_attacker.txt`](results/near_allin_attacker.txt)).
   - Bots that bet 2x the pot or a random size, only with strong hands, beat `cand29` by about 110 chips per long match. `cand36` fixed the cause: +32 match points over 128 deal sets (se 7.5) against them ([`results/big_bet_attackers.txt`](results/big_bet_attackers.txt)). The same bots bluffing with those sizes gain nothing against it.
 - **Rivals it had never met.** Two new bots were written from the organisers' documents only, with no view of this bot or its results. `cand36` won 29 and 28 of 32 long matches against them, and 27 and 18 of 32 short ones ([`results/blind_rivals.txt`](results/blind_rivals.txt)).
-- **General field.** Against the 10 strongest test bots, `cand36` scored +11 match points (se 7.0) over `cand29` in 240 long matches and -3 (se 9.1) in 240 short ones ([`results/cand36_vs_cand29_field.txt`](results/cand36_vs_cand29_field.txt)).
-- **Robustness.** 0 forfeits and 0 engine notices in every test. On a CPU slowed to one sixth of its speed, it used 26.4 s of the 30 s bank per Stage 1 leg and 65.6 s of 75 s per Stage 2 leg ([`results/slow_core_cand36.txt`](results/slow_core_cand36.txt)).
+- **General field.** Against the 10 strongest test bots, `cand36` scored +11 match points (se 7.0) over `cand29` in 240 long matches and -3 (se 9.1) in 240 short ones ([`results/cand36_vs_cand29_field.txt`](results/cand36_vs_cand29_field.txt)). `cand41` then scored +20 match points (se 8.5) over `cand36` in 240 short matches, better against 9 of the 10 bots, and -4 (se 6.9) in 240 long ones ([`results/cand41_vs_cand36_field.txt`](results/cand41_vs_cand36_field.txt)).
+- **Robustness.** 0 forfeits and 0 engine notices in every test. On a CPU slowed to one sixth of its speed, it used 26.8 s of the 30 s bank per Stage 1 leg and 67.3 s of 75 s per Stage 2 leg ([`results/slow_core_cand41.txt`](results/slow_core_cand41.txt)).
 
 ## The game
 
@@ -92,14 +92,14 @@ The organisers' starter kit (`engine.py`, `random_bot.py`, the rulebook and the 
    python build/mkzip.py submission/bot.py dist/submission.zip
    ```
 
-The bot reads nothing from disk, so the zip holds one file. `submission/bot.py` has md5 `d9294bd16d33bdf325212c3f71910816`.
+The bot reads nothing from disk, so the zip holds one file. `submission/bot.py` has md5 `1ffb1ffacf0b7956ffeaeca298af3e9a`.
 
 ## Repository layout
 
 | Path | Contents |
 |---|---|
 | [`submission/bot.py`](submission/bot.py) | The entry. Self-contained: the decision code, the preflop table and the trained solver strategy, embedded as compressed text. |
-| [`build/`](build/) | How the entry was assembled: `build_veto.py` merges the solver into the decision code, `cleanup.py` removes the lead-lock code the two-leg rules made useless, then `fix20.py`, `fix29.py`, `fix30.py`, `fix31.py` and `fix32.py` (with `E1=1`) apply the later fixes in that order, and `mkzip.py` makes the upload zip. |
+| [`build/`](build/) | How the entry was assembled: `build_veto.py` merges the solver into the decision code, `cleanup.py` removes the lead-lock code the two-leg rules made useless, then `fix20.py`, `fix29.py`, `fix30.py`, `fix31.py`, `fix32.py` (with `E1=1`), `fix34.py` (with `W=1`) and `fix33.py` apply the later fixes in that order, and `mkzip.py` makes the upload zip. |
 | [`solver/`](solver/) | The CFR trainer (`train.py`), the abstraction it solves (`bot/abstraction.py`), a standalone solver bot, self-checks and [`NOTES.md`](solver/NOTES.md). `bot/strategy.py` here is a small untrained smoke table. The trained table is the one inside `submission/bot.py`. |
 | [`lab/`](lab/) | The test harness: match runners, paired comparisons, the round robin, the divergence analysis, test-opponent generators and the release checks. See [How we tested](#how-we-tested). |
 | [`lab/candidates/`](lab/candidates/) | Patches for changes that were tested and either rejected or are still being tested. |
@@ -112,7 +112,7 @@ The bot reads nothing from disk, so the zip holds one file. `submission/bot.py` 
 
 | Rule | What this entry does |
 |---|---|
-| Python 3.11, standard library, NumPy and SciPy only | Standard library and NumPy. Tested under NumPy 2.4.6, 1.26 and 1.23 on Python 3.11 ([`results/numpy_versions_cand36.txt`](results/numpy_versions_cand36.txt)). |
+| Python 3.11, standard library, NumPy and SciPy only | Standard library and NumPy. Tested under NumPy 2.4.6, 1.26 and 1.23 on Python 3.11 ([`results/numpy_versions_cand41.txt`](results/numpy_versions_cand41.txt)). |
 | One `bot.py`, or a zip with `bot.py` at the top, at most 5 MB | One `bot.py` of 1.4 MB. The zip is 1.0 MB. |
 | No writing files, no network, no subprocesses | None of these are used. All tables are embedded in the file and decoded in memory at start-up. |
 | 1 vCPU, 1 GB RAM | Runs on one core. Peak memory 75 MB. |
@@ -237,18 +237,18 @@ Bots were also written with full access to the code to beat this one. Each findi
 | Slow-play rate learnt as P(passive given strong) | -4 points (se 4.2) against the trap bot it was meant for | Rejected |
 | Corrections where real bets meet the solver's tree; no solver check for bets far cheaper than the tree size | -3 points (se 3.3) against min-bet bots; -88 chips per match (se 65) against min-raise bots | Rejected |
 | Separate counters for acting first and acting after our check or limp | -2.5 points (se 4.6) against bots that raise every limp | Rejected |
-| Range slices read inside equity buckets; solver features rounded as in training | Correct by a brute-force check, but no measurable change: -4 points (se 6.9) long, +8 (se 5.1) short | Not shipped; more deals to come |
+| Range slices read inside equity buckets (the old slice dropped one bucket and kept another whole, overstating preflop equity when called); solver features rounded as in training | +20 points (se 8.5) over 240 short matches, better against 9 of 10 strong bots; -4 (se 6.9) over 240 long ones; level against the blind rivals | Kept (`cand41`) |
 
 ## Robustness
 
-From [`results/engine_checks_cand36.txt`](results/engine_checks_cand36.txt), [`results/slow_core_cand36.txt`](results/slow_core_cand36.txt) and [`results/numpy_versions_cand36.txt`](results/numpy_versions_cand36.txt):
+From [`results/engine_checks_cand41.txt`](results/engine_checks_cand41.txt), [`results/slow_core_cand41.txt`](results/slow_core_cand41.txt) and [`results/numpy_versions_cand41.txt`](results/numpy_versions_cand41.txt):
 
 | Check | Result |
 |---|---|
 | Organiser engine, Stage 1 and Stage 2, against the starter and random bots | 0 notices, 0 lines on stderr |
 | Time used, Stage 2 against the starter bot | About 35 s of the 75 s bank per leg |
-| CPU slowed to one sixth (5 busy processes on the same core) | Stage 1: 26.4 s of 30 s per leg. Stage 2: 65.6 s of 75 s per leg. 0 notices. |
-| Start-up to exit | 0.90 to 0.93 s (limit 5 s) |
+| CPU slowed to one sixth (5 busy processes on the same core) | Stage 1: 26.8 s of 30 s per leg. Stage 2: 67.3 s of 75 s per leg. 0 notices. |
+| Start-up to exit | 0.84 to 0.91 s (limit 5 s) |
 | Peak memory | 75 MB (limit 1 GB) |
 | Unknown message types and fields | Ignored, 0 notices |
 | A 998-hand match | Clean |

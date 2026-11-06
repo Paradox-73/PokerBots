@@ -640,15 +640,14 @@ class Bot:
         tot = cw[-1]
         o = self.opp
 
+        xs, ys = np.concatenate(([0.0], cw)), np.concatenate(([0.0], cwe))
+
         def window(lo, hi):
-            i = int(np.searchsorted(cw, min(hi, 1.0) * tot))
-            i = min(i, len(cw) - 1)
-            if lo <= 0:
-                return float(cwe[i] / max(cw[i], 1e-12))
-            j = min(int(np.searchsorted(cw, lo * tot)), len(cw) - 1)
-            if cw[i] - cw[j] < 1e-9:
-                return float(cwe[i] / max(cw[i], 1e-12))
-            return float((cwe[i] - cwe[j]) / (cw[i] - cw[j]))
+            # Equity against the [lo, hi] slice of the range (strongest first), interpolated inside buckets.
+            a, b = sorted((min(max(lo, 0.0), 1.0) * tot, min(max(hi, 0.0), 1.0) * tot))
+            if b - a < 1e-9 * tot:
+                a, b = max(0.0, a - 1e-6 * tot), min(tot, b + 1e-6 * tot)
+            return float((np.interp(b, xs, ys) - np.interp(a, xs, ys)) / max(b - a, 1e-12))
 
         eq = float(cwe[-1] / max(tot, 1e-12))
         behind = min(req["my_stack"], req["opp_stack"])
@@ -1071,6 +1070,7 @@ def river_feature(board5, mine, w):
 
 # ================================================================== buckets
 def bucket_1d(x, edges):
+    x = np.float32(round(min(max(float(x), 0.0), 1.0) * 65535) / 65535)  # as the trainer's uint16 features
     return int(np.searchsorted(edges, x, "right"))
 
 
