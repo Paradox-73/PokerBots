@@ -1,0 +1,14 @@
+Stage 2 extension: cand41 vs cand36 on fresh deal sets 425-448, hard 10 bots, both legs (B - A per seed, capped chips).
+On seeds 401-424 the same comparison was -4 points (se 6.9); see cand41_vs_cand36_field.txt.
+
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  17.0 B  20.0  capped A  +463 B  +494  B-A   +32
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A +1000 B  +972  B-A   -28
+S2 f11        seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +832 B  +929  B-A   +97
+S2 f3         seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +863 B  +837  B-A   -25
+S2 f7         seeds  24  rows A  24 B  24  wins A  11.0 B  18.5  capped A   +92 B  +387  B-A  +295
+S2 locker     seeds  24  rows A  24 B  24  wins A  22.0 B  22.0  capped A  +846 B  +889  B-A   +43
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  21.0 B  20.0  capped A  +794 B  +806  B-A   +13
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  21.0 B  23.0  capped A  +692 B  +644  B-A   -48
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  19.0 B  21.0  capped A  +718 B  +788  B-A   +70
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +884 B  +908  B-A   +24
+S2 all 240 seeds: points B-A +14.5 (se 6.5)  capped/match B-A +47.0 (se 32.0)
