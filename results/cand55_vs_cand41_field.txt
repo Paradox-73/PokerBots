@@ -1,0 +1,53 @@
+cand55 = cand49 + build/fix40.py (input guard) + build/fix43.py (position counters). It plays exactly as cand53
+(the same counters, built through fix41 + fix42 with size slots off): eqcheck.sh match logs on S1 seeds 1, 2
+and S2 seed 3 have the same md5 for cand53 (two runs) and cand55; cand49 differs on the same harness:
+  eq_cand53_cand55 s1_1 cand53_r1 26c4c3cbc1ac
+  eq_cand53_cand55 s1_1 cand53_r2 26c4c3cbc1ac
+  eq_cand53_cand55 s1_1 cand55 26c4c3cbc1ac
+  eq_cand53_cand55 s1_2 cand53_r1 075361eac4d3
+  eq_cand53_cand55 s1_2 cand53_r2 075361eac4d3
+  eq_cand53_cand55 s1_2 cand55 075361eac4d3
+  eq_cand53_cand55 s2_3 cand53_r1 1787d36f1fb3
+  eq_cand53_cand55 s2_3 cand53_r2 1787d36f1fb3
+  eq_cand53_cand55 s2_3 cand55 1787d36f1fb3
+  eq_cand53_cand49 s1_1 cand49 1f7b3993872d
+  eq_cand53_cand49 s1_1 cand53_r1 26c4c3cbc1ac
+  eq_cand53_cand49 s1_1 cand53_r2 26c4c3cbc1ac
+  eq_cand53_cand49 s1_2 cand49 bc85865bcbe4
+  eq_cand53_cand49 s1_2 cand53_r1 075361eac4d3
+  eq_cand53_cand49 s1_2 cand53_r2 075361eac4d3
+  eq_cand53_cand49 s2_3 cand49 135efcbbea35
+  eq_cand53_cand49 s2_3 cand53_r1 1787d36f1fb3
+  eq_cand53_cand49 s2_3 cand53_r2 1787d36f1fb3
+
+General field: the 10 strongest test bots, seeds 401-424, B = cand53, A = cand41 (same moves as cand49).
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  20.0 B  19.0  capped A  +470 B  +479  B-A    +9
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A  +974 B +1000  B-A   +26
+S2 f11        seeds  24  rows A  24 B  24  wins A  22.0 B  20.0  capped A  +763 B  +614  B-A  -149
+S2 f3         seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +950 B  +944  B-A    -6
+S2 f7         seeds  24  rows A  24 B  24  wins A  13.0 B  12.0  capped A   +12 B   +60  B-A   +49
+S2 locker     seeds  24  rows A  24 B  24  wins A  21.0 B  21.0  capped A  +841 B  +805  B-A   -35
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  20.0  capped A  +718 B  +759  B-A   +41
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  23.0 B  24.0  capped A  +766 B  +717  B-A   -49
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  16.0 B  22.0  capped A  +589 B  +835  B-A  +246
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +817 B  +857  B-A   +40
+S2 all 240 seeds: points B-A +4.0 (se 6.5)  capped/match B-A +17.2 (se 31.6)
+S1 cfrS       seeds  24  rows A  24 B  24  wins A  20.0 B  21.0  capped A  +263 B  +270  B-A    +7
+S1 f10        seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +358 B  +354  B-A    -4
+S1 f11        seeds  24  rows A  24 B  24  wins A  19.0 B  17.0  capped A  +241 B  +175  B-A   -66
+S1 f3         seeds  24  rows A  24 B  24  wins A  21.0 B  20.0  capped A  +290 B  +262  B-A   -28
+S1 f7         seeds  24  rows A  24 B  24  wins A  13.0 B  12.0  capped A   +54 B   +27  B-A   -26
+S1 locker     seeds  24  rows A  24 B  24  wins A  16.0 B  17.0  capped A  +258 B  +277  B-A   +19
+S1 rival_a       seeds  24  rows A  24 B  24  wins A  16.0 B  17.0  capped A  +217 B  +236  B-A   +18
+S1 rival_b     seeds  24  rows A  24 B  24  wins A  21.0 B  20.0  capped A  +247 B  +193  B-A   -55
+S1 rival_a2  seeds  24  rows A  24 B  24  wins A  15.0 B  15.0  capped A  +201 B  +204  B-A    +3
+S1 rival_b2 seeds  24  rows A  24 B  24  wins A  20.0 B  19.0  capped A  +272 B  +234  B-A   -38
+S1 all 240 seeds: points B-A -3.0 (se 8.6)  capped/match B-A -17.0 (se 20.0)
+
+Blind rivals f16 and f17 (written from the organisers' documents only), seeds 1001-1032.
+S2 f16        seeds  32  rows A  32 B  32  wins A  29.0 B  32.0  capped A  +754 B  +928  B-A  +175
+S2 f17        seeds  32  rows A  32 B  32  wins A  27.0 B  27.0  capped A  +682 B  +637  B-A   -45
+S2 all 64 seeds: points B-A +3.0 (se 3.6)  capped/match B-A +64.9 (se 87.6)
+S1 f16        seeds  32  rows A  32 B  32  wins A  23.0 B  29.0  capped A  +204 B  +280  B-A   +76
+S1 f17        seeds  32  rows A  32 B  32  wins A  22.0 B  18.0  capped A  +144 B   +81  B-A   -64
+S1 all 64 seeds: points B-A +2.0 (se 4.7)  capped/match B-A +6.3 (se 47.5)

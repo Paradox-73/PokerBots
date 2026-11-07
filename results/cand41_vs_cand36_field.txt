@@ -27,6 +27,6 @@ S1 all 240 seeds: points B-A +20.0 (se 8.5)  capped/match B-A +55.9 (se 20.3)
 S2 f16        seeds  32  rows A  32 B  32  wins A  29.0 B  29.0  capped A  +770 B  +754  B-A   -17
 S2 f17        seeds  32  rows A  32 B  32  wins A  28.0 B  27.0  capped A  +663 B  +682  B-A   +19
 S2 all 64 seeds: points B-A -1.0 (se 3.3)  capped/match B-A +1.1 (se 81.6)
-S1 f16        seeds  27  rows A  27 B  27  wins A  24.0 B  19.0  capped A  +287 B  +193  B-A   -94
-S1 f17        seeds  26  rows A  26 B  26  wins A  15.0 B  18.0  capped A   +87 B  +143  B-A   +56
-S1 all 53 seeds: points B-A -2.0 (se 4.5)  capped/match B-A -20.3 (se 51.6)
+S1 f16        seeds  32  rows A  32 B  32  wins A  27.0 B  23.0  capped A  +251 B  +204  B-A   -48
+S1 f17        seeds  32  rows A  32 B  32  wins A  18.0 B  22.0  capped A   +64 B  +144  B-A   +80
+S1 all 64 seeds: points B-A +0.0 (se 4.9)  capped/match B-A +16.2 (se 47.4)

@@ -1,0 +1,80 @@
+Tonight's new rivals, seeds 3401-3416: f20 (written from the documents only: range tracking and a one-street
+best response) and 10 bots each written to one common playing style (rivals6/a*.py).
+-- cand49
+S2 a10          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  27.5 s
+S2 a12          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest   0.5 s
+S2 a13          matches  16  wins  16.0  capped/match   +981 (se  19)  forfeits 0  notices 0  slowest   6.5 s
+S2 a14          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  36.9 s
+S2 a15          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  22.3 s
+S2 a3           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  66.1 s
+S2 a4           matches  16  wins  16.0  capped/match   +785 (se  57)  forfeits 0  notices 0  slowest  41.7 s
+S2 a5           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  23.2 s
+S2 a6           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  14.2 s
+S2 a9           matches  16  wins  16.0  capped/match   +976 (se  24)  forfeits 0  notices 0  slowest  22.9 s
+S2 f20          matches  16  wins  15.0  capped/match   +704 (se 110)  forfeits 0  notices 0  slowest  43.7 s
+S1 a10          matches  16  wins  15.0  capped/match   +341 (se  35)  forfeits 0  notices 0  slowest   7.6 s
+S1 a12          matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest   0.0 s
+S1 a13          matches  16  wins  16.0  capped/match   +384 (se  10)  forfeits 0  notices 0  slowest   0.0 s
+S1 a14          matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest  10.6 s
+S1 a15          matches  16  wins  14.0  capped/match   +345 (se  38)  forfeits 0  notices 0  slowest   5.6 s
+S1 a3           matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest  24.0 s
+S1 a4           matches  16  wins  12.0  capped/match   +180 (se  62)  forfeits 0  notices 0  slowest  12.4 s
+S1 a5           matches  16  wins  15.0  capped/match   +366 (se  34)  forfeits 0  notices 0  slowest   6.8 s
+S1 a6           matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest   1.9 s
+S1 a9           matches  16  wins  16.0  capped/match   +336 (se  35)  forfeits 0  notices 0  slowest   6.0 s
+S1 f20          matches  16  wins  13.0  capped/match   +190 (se  70)  forfeits 0  notices 0  slowest  16.7 s
+S2 all: 176 matches, 175.0 wins, 0 forfeits, 0 notices
+S1 all: 176 matches, 165.0 wins, 0 forfeits, 0 notices
+-- cand53
+S2 a10          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  27.8 s
+S2 a12          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest   0.7 s
+S2 a13          matches  16  wins  16.0  capped/match   +993 (se   7)  forfeits 0  notices 0  slowest   5.5 s
+S2 a14          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  36.0 s
+S2 a15          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  22.6 s
+S2 a3           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  66.8 s
+S2 a4           matches  16  wins  16.0  capped/match   +918 (se  46)  forfeits 0  notices 0  slowest  40.7 s
+S2 a5           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  22.0 s
+S2 a6           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  14.1 s
+S2 a9           matches  16  wins  16.0  capped/match   +992 (se   8)  forfeits 0  notices 0  slowest  23.2 s
+S2 f20          matches  16  wins  15.0  capped/match   +803 (se 124)  forfeits 0  notices 0  slowest  43.9 s
+S1 a10          matches  16  wins  15.0  capped/match   +335 (se  36)  forfeits 0  notices 0  slowest   7.5 s
+S1 a12          matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest   0.0 s
+S1 a13          matches  16  wins  16.0  capped/match   +391 (se   6)  forfeits 0  notices 0  slowest   0.0 s
+S1 a14          matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest  10.4 s
+S1 a15          matches  16  wins  15.0  capped/match   +357 (se  39)  forfeits 0  notices 0  slowest   6.2 s
+S1 a3           matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest  23.6 s
+S1 a4           matches  16  wins  12.0  capped/match   +224 (se  71)  forfeits 0  notices 0  slowest  13.5 s
+S1 a5           matches  16  wins  16.0  capped/match   +398 (se   2)  forfeits 0  notices 0  slowest   7.8 s
+S1 a6           matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest   1.8 s
+S1 a9           matches  16  wins  14.0  capped/match   +322 (se  55)  forfeits 0  notices 0  slowest   5.2 s
+S1 f20          matches  16  wins  11.0  capped/match   +173 (se  79)  forfeits 0  notices 0  slowest  16.4 s
+S2 all: 176 matches, 175.0 wins, 0 forfeits, 0 notices
+S1 all: 176 matches, 163.0 wins, 0 forfeits, 0 notices
+-- cand54
+S2 a10          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  27.9 s
+S2 a12          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest   0.5 s
+S2 a13          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest   5.3 s
+S2 a14          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  35.7 s
+S2 a15          matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  23.2 s
+S2 a3           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  66.1 s
+S2 a4           matches  16  wins  15.0  capped/match   +815 (se  94)  forfeits 0  notices 0  slowest  39.6 s
+S2 a5           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  23.3 s
+S2 a6           matches  16  wins  16.0  capped/match  +1000 (se   0)  forfeits 0  notices 0  slowest  14.1 s
+S2 a9           matches  16  wins  16.0  capped/match   +937 (se  44)  forfeits 0  notices 0  slowest  23.0 s
+S2 f20          matches  16  wins  13.0  capped/match   +670 (se 131)  forfeits 0  notices 0  slowest  45.7 s
+S1 a10          matches  16  wins  15.0  capped/match   +346 (se  30)  forfeits 0  notices 0  slowest   8.0 s
+S1 a12          matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest   0.0 s
+S1 a13          matches  16  wins  16.0  capped/match   +381 (se  11)  forfeits 0  notices 0  slowest   0.0 s
+S1 a14          matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest  10.7 s
+S1 a15          matches  16  wins  16.0  capped/match   +381 (se  19)  forfeits 0  notices 0  slowest   6.6 s
+S1 a3           matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest  24.1 s
+S1 a4           matches  16  wins  13.0  capped/match   +303 (se  48)  forfeits 0  notices 0  slowest  13.1 s
+S1 a5           matches  16  wins  16.0  capped/match   +370 (se  21)  forfeits 0  notices 0  slowest   6.4 s
+S1 a6           matches  16  wins  16.0  capped/match   +400 (se   0)  forfeits 0  notices 0  slowest   2.3 s
+S1 a9           matches  16  wins  15.0  capped/match   +326 (se  43)  forfeits 0  notices 0  slowest   6.2 s
+S1 f20          matches  16  wins  13.0  capped/match   +248 (se  61)  forfeits 0  notices 0  slowest  17.8 s
+S2 all: 176 matches, 172.0 wins, 0 forfeits, 0 notices
+S1 all: 176 matches, 168.0 wins, 0 forfeits, 0 notices
+-- cand53 minus cand49 on the same deals
+S2 all 176 seeds: points B-A +0.0 (se 1.4)  capped/match B-A +23.5 (se 15.9)
+S1 all 176 seeds: points B-A -2.0 (se 4.0)  capped/match B-A +5.4 (se 13.0)

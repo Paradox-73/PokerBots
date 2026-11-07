@@ -1,0 +1,34 @@
+Practice bots written with our code in hand, each played on fresh deals (organisers' engine, two legs).
+Rows are the named version's record; capped = chips per match clipped to +-1000 (S2) or +-400 (S1).
+
+== f18: cand49 plus a reader of cand49's bet sizes and discards, built from cand49's measured habits.
+== cand49 vs f18, S2 and S1 seeds 3001-3032
+S2 f18          matches  32  wins  14.0  capped/match   -125 (se 117)  forfeits 0  notices 0  slowest  35.8 s
+S1 f18          matches  32  wins  18.0  capped/match     -3 (se  54)  forfeits 0  notices 0  slowest  12.9 s
+S2 all: 32 matches, 14.0 wins, 0 forfeits, 0 notices
+S1 all: 32 matches, 18.0 wins, 0 forfeits, 0 notices
+
+== f19: cand49 that always checks first after the flop and always bets 0.55 pot when checked to.
+== It targets the shared counter for the opponent's first action on a street (opens vs answers our check).
+== Seeds 3201-3232. cand53 = cand49 + input guard + position counters (same moves as cand55, see below).
+-- cand49
+S2 f19          matches  32  wins   5.0  capped/match   -442 (se 100)  forfeits 0  notices 0  slowest  38.8 s
+S1 f19          matches  32  wins   9.0  capped/match   -145 (se  50)  forfeits 0  notices 0  slowest  14.0 s
+S2 all: 32 matches, 5.0 wins, 0 forfeits, 0 notices
+S1 all: 32 matches, 9.0 wins, 0 forfeits, 0 notices
+-- cand53
+S2 f19          matches  32  wins  19.0  capped/match   +190 (se 112)  forfeits 0  notices 0  slowest  36.3 s
+S1 f19          matches  32  wins  20.0  capped/match    +52 (se  58)  forfeits 0  notices 0  slowest  14.4 s
+S2 all: 32 matches, 19.0 wins, 0 forfeits, 0 notices
+S1 all: 32 matches, 20.0 wins, 0 forfeits, 0 notices
+-- cand54
+S2 f19          matches  32  wins  19.0  capped/match   +147 (se 102)  forfeits 0  notices 0  slowest  39.3 s
+S1 f19          matches  32  wins  17.0  capped/match    +48 (se  53)  forfeits 0  notices 0  slowest  13.8 s
+S2 all: 32 matches, 19.0 wins, 0 forfeits, 0 notices
+S1 all: 32 matches, 17.0 wins, 0 forfeits, 0 notices
+-- cand53 minus cand49 on the same deals
+S2 all 32 seeds: points B-A +14.0 (se 3.2)  capped/match B-A +631.9 (se 134.0)
+S1 all 32 seeds: points B-A +11.0 (se 3.7)  capped/match B-A +196.9 (se 73.7)
+-- cand54 minus cand49 on the same deals
+S2 all 32 seeds: points B-A +14.0 (se 3.5)  capped/match B-A +588.9 (se 135.4)
+S1 all 32 seeds: points B-A +8.0 (se 4.1)  capped/match B-A +192.9 (se 71.8)

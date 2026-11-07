@@ -1,0 +1,22 @@
+f21 = cand53 plus one rule: on the flop, out of position, after our check, facing a bet, call only with equity
+at least 0.45. It placed first in the 12-bot round robin (round_robin_12.txt). Follow-up on fresh deals.
+Rule written before these rows came in: adopt the rule only if f21 beats cand55 head to head by more than 2 se,
+or beats cand53 on the general field by more than 2 se.
+== cand55 vs f21 head to head, S2 seeds 3701-3764, S1 seeds 3701-3732 (rows are cand55's record)
+S2 f21          matches  64  wins  37.0  capped/match   +101 (se  69)  forfeits 0  notices 0  slowest  38.0 s
+S1 f21          matches  32  wins  19.0  capped/match    +63 (se  53)  forfeits 0  notices 0  slowest  13.2 s
+S2 all: 64 matches, 37.0 wins, 0 forfeits, 0 notices
+S1 all: 32 matches, 19.0 wins, 0 forfeits, 0 notices
+
+== f21 vs cand53 (the same bot without the rule), general field S2 seeds 401-424, B = f21
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  19.0 B  18.0  capped A  +479 B  +624  B-A  +145
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A +1000 B  +996  B-A    -4
+S2 f11        seeds  24  rows A  24 B  24  wins A  20.0 B  24.0  capped A  +614 B  +869  B-A  +256
+S2 f3         seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A  +944 B  +974  B-A   +30
+S2 f7         seeds  24  rows A  24 B  24  wins A  12.0 B  14.0  capped A   +60 B  +127  B-A   +67
+S2 locker     seeds  24  rows A  24 B  24  wins A  21.0 B  23.0  capped A  +805 B  +896  B-A   +91
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  21.0  capped A  +759 B  +831  B-A   +71
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  24.0 B  23.0  capped A  +717 B  +689  B-A   -28
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  22.0 B  17.0  capped A  +835 B  +601  B-A  -233
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  23.0 B  23.0  capped A  +857 B  +821  B-A   -36
+S2 all 240 seeds: points B-A +2.0 (se 6.5)  capped/match B-A +35.7 (se 33.7)

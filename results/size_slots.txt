@@ -1,0 +1,57 @@
+How opponents answer our first bet on a street after the flop, by bet size (fraction of the pot at the start
+of the street), from logged matches where bot A is ours: leaklogs6 = vs f7, leaklogs7 = vs cand20,
+leaklogs5 = vs f17. One shared counter held the 0.66-pot and the pot-sized bet.
+== leaklogs6 (64 matches)
+flop  bet 0.33  n=2601  fold 0.23  call 0.66  raise 0.11
+flop  bet 0.66  n=1668  fold 0.42  call 0.52  raise 0.06
+flop  bet 1.00  n=1823  fold 0.55  call 0.43  raise 0.03
+flop  bet 1.50  n=2191  fold 0.64  call 0.34  raise 0.02
+turn  bet 0.33  n=1251  fold 0.24  call 0.69  raise 0.08
+turn  bet 0.66  n= 807  fold 0.40  call 0.56  raise 0.04
+turn  bet 1.00  n=1109  fold 0.54  call 0.43  raise 0.03
+turn  bet 1.50  n=1159  fold 0.61  call 0.37  raise 0.02
+river bet 0.33  n= 595  fold 0.29  call 0.56  raise 0.15
+river bet 0.66  n= 536  fold 0.41  call 0.53  raise 0.07
+river bet 1.00  n= 567  fold 0.59  call 0.37  raise 0.04
+river bet 1.50  n= 606  fold 0.65  call 0.31  raise 0.04
+== leaklogs7 (32 matches)
+flop  bet 0.33  n=1669  fold 0.28  call 0.50  raise 0.23
+flop  bet 0.66  n=1141  fold 0.44  call 0.44  raise 0.12
+flop  bet 1.00  n= 975  fold 0.57  call 0.35  raise 0.08
+flop  bet 1.50  n=1358  fold 0.57  call 0.30  raise 0.12
+turn  bet 0.33  n= 983  fold 0.33  call 0.51  raise 0.16
+turn  bet 0.66  n= 475  fold 0.42  call 0.47  raise 0.11
+turn  bet 1.00  n= 521  fold 0.61  call 0.34  raise 0.06
+turn  bet 1.50  n= 689  fold 0.56  call 0.32  raise 0.12
+river bet 0.33  n= 349  fold 0.41  call 0.46  raise 0.13
+river bet 0.66  n= 319  fold 0.52  call 0.41  raise 0.07
+river bet 1.00  n= 220  fold 0.68  call 0.28  raise 0.04
+river bet 1.50  n= 326  fold 0.62  call 0.32  raise 0.06
+== leaklogs5 (48 matches)
+flop  bet 0.33  n= 798  fold 0.23  call 0.53  raise 0.24
+flop  bet 0.66  n= 462  fold 0.49  call 0.28  raise 0.23
+flop  bet 1.00  n= 311  fold 0.77  call 0.16  raise 0.08
+flop  bet 1.50  n= 405  fold 0.84  call 0.12  raise 0.05
+turn  bet 0.33  n= 491  fold 0.48  call 0.34  raise 0.18
+turn  bet 0.66  n= 264  fold 0.62  call 0.18  raise 0.20
+turn  bet 1.00  n= 223  fold 0.86  call 0.10  raise 0.04
+turn  bet 1.50  n= 261  fold 0.89  call 0.07  raise 0.04
+river bet 0.33  n= 119  fold 0.55  call 0.27  raise 0.18
+river bet 0.66  n=  78  fold 0.64  call 0.17  raise 0.19
+river bet 1.00  n=  56  fold 0.88  call 0.09  raise 0.04
+river bet 1.50  n=  62  fold 0.87  call 0.06  raise 0.06
+
+Size slots (separate counters for 0.6-0.8 and 0.8-1.2 pot inside that bucket): cand54 = cand53 + size slots.
+== cand54 vs cand41, general field seeds 401-424
+S2 all 240 seeds: points B-A +5.5 (se 6.8)  capped/match B-A +14.6 (se 35.7)
+S1 all 240 seeds: points B-A +2.0 (se 8.5)  capped/match B-A -10.8 (se 19.4)
+== cand54 vs cand41, blind rivals seeds 1001-1032
+S2 all 64 seeds: points B-A +5.0 (se 3.0)  capped/match B-A +134.4 (se 66.6)
+S1 all 64 seeds: points B-A +2.0 (se 4.9)  capped/match B-A +20.0 (se 54.5)
+== cand54 vs cand53 directly
+S2 all 240 seeds: points B-A +1.5 (se 6.5)  capped/match B-A -2.6 (se 35.1)
+S1 all 240 seeds: points B-A +5.0 (se 8.3)  capped/match B-A +6.2 (se 18.1)
+S2 all 64 seeds: points B-A +2.0 (se 2.5)  capped/match B-A +69.5 (se 65.4)
+S1 all 64 seeds: points B-A +0.0 (se 4.3)  capped/match B-A +13.7 (se 46.7)
+S2 all 176 seeds: points B-A -3.0 (se 1.7)  capped/match B-A -25.8 (se 17.1)
+S1 all 176 seeds: points B-A +5.0 (se 3.6)  capped/match B-A +14.0 (se 10.8)

@@ -35,7 +35,7 @@ The bot makes every decision by expected value. It estimates its equity against 
 
 ## Results at a glance
 
-All numbers come from matches on the organisers' engine, in the official two-leg format, on deals never used to tune the bot. The files in [`results/`](results/) hold the raw summaries. The entry is `cand49`: `cand41`, the version most of those files test, plus a two-line guard that runs only when the bot has under 1 s of its time bank left ([`build/fix38.py`](build/fix38.py), [`results/time_panic_cand49.txt`](results/time_panic_cand49.txt)). `cand20`, `cand29` and `cand36` are the versions before `cand41`.
+All numbers come from matches on the organisers' engine, in the official two-leg format, on deals never used to tune the bot. The files in [`results/`](results/) hold the raw summaries. The entry is `cand55`: `cand41`, the version most of those files test, plus three changes. A two-line guard runs only when the bot has under 1 s of its time bank left ([`build/fix38.py`](build/fix38.py), [`results/time_panic_cand49.txt`](results/time_panic_cand49.txt)); that build is `cand49`. A two-line input guard skips a message line that is valid JSON but not an object ([`build/fix40.py`](build/fix40.py), [`results/input_guard.txt`](results/input_guard.txt)). The opponent model now counts the opponent's first action on a street after the flop separately by position ([`build/fix43.py`](build/fix43.py), [`results/practice_bots_night.txt`](results/practice_bots_night.txt)). `cand20`, `cand29` and `cand36` are the versions before `cand41`.
 
 **Stage 2 round robin of the 14 strongest test bots**, played by `cand20` (500 duplicate deals per match, 8 deal sets per pair, 728 matches, [`results/round_robin_stage2.txt`](results/round_robin_stage2.txt)):
 
@@ -57,10 +57,17 @@ The bot beat every other bot head to head except f7, where it won 4 of 8. Over a
 - **Bots built to beat it.** Bots written with the full source code in hand each attack one weakness. Most are copies of the bot with one habit added, so any edge they gain comes from that habit alone.
   - A bot that bets small on every flop lost 28 of 32 long matches to `cand20`. A bot that sets traps, checking strong hands and raising later, came out even with `cand20` ([`results/exploiters_vs_cand20.txt`](results/exploiters_vs_cand20.txt)).
   - A bot that bets all-in minus 2 chips on the turn and river beat `cand20` in 31 of 32 long matches. `cand29` fixed the cause and won 17 of 32 against it, +16 match points (se 3.2) ([`results/near_allin_attacker.txt`](results/near_allin_attacker.txt)).
-  - Bots that bet 2x the pot or a random size, only with strong hands, beat `cand29` by about 110 chips per long match. `cand36` fixed the cause: +32 match points over 128 deal sets (se 7.5) against them ([`results/big_bet_attackers.txt`](results/big_bet_attackers.txt)). The same bots bluffing with those sizes gain nothing against it.
+  - Bots that bet 2x the pot or a random size, only with strong hands, beat `cand29` by about 180 capped chips per long match. `cand36` fixed the cause: +32 match points over 128 deal sets (se 7.5) against them ([`results/big_bet_attackers.txt`](results/big_bet_attackers.txt)). The same bots bluffing with those sizes gain nothing against it.
 - **Rivals it had never met.** Two new bots were written from the organisers' documents only, with no view of this bot or its results. `cand36` won 29 and 28 of 32 long matches against them, and 27 and 18 of 32 short ones ([`results/blind_rivals.txt`](results/blind_rivals.txt)).
 - **General field.** Against the 10 strongest test bots, `cand36` scored +11 match points (se 7.0) over `cand29` in 240 long matches and -3 (se 9.1) in 240 short ones ([`results/cand36_vs_cand29_field.txt`](results/cand36_vs_cand29_field.txt)). `cand41` then scored +20 match points (se 8.5) over `cand36` in 240 short matches, better against 9 of the 10 bots, and -4 (se 6.9) in 240 long ones ([`results/cand41_vs_cand36_field.txt`](results/cand41_vs_cand36_field.txt)). On 240 fresh long matches it scored +14.5 (se 6.5), including 18.5 wins of 24 against f7 where `cand36` won 11 ([`results/cand41_vs_cand36_stage2_more.txt`](results/cand41_vs_cand36_stage2_more.txt)).
 - **Robustness.** 0 forfeits and 0 engine notices in every test. On a CPU slowed to one sixth of its speed, it used 26.8 s of the 30 s bank per Stage 1 leg and 67.3 s of 75 s per Stage 2 leg ([`results/slow_core_cand41.txt`](results/slow_core_cand41.txt)).
+
+**Last test round, 7 Nov.** Most of these files test `cand53`. On three fixed deal sets its match logs are identical to those of `cand55`, the entry ([`results/cand55_vs_cand41_field.txt`](results/cand55_vs_cand41_field.txt)).
+- **A leak found and fixed.** A practice bot that always checks first after the flop and always bets when checked to beat `cand49` in 27 of 32 long matches. One counter in the opponent model held two decisions: opening a street, and answering our check. With the two counted apart, the bot won 19 of 32 long and 20 of 32 short matches against it: +14 match points (se 3.2) and +11 (se 3.7) over `cand49` on the same deals ([`results/practice_bots_night.txt`](results/practice_bots_night.txt)).
+- **No loss elsewhere.** On the general field, against the rows of `cand41` (the same moves as `cand49` outside a time panic): +4 match points (se 6.5) in 240 long matches and -3 (se 8.6) in 240 short ones. Against the blind rivals: +3 (se 3.6) long and +2 (se 4.7) short.
+- **New rivals.** One bot written from the organisers' documents only (f20) and 10 bots each written to one common playing style: 175 of 176 long matches and 163 of 176 short ones won ([`results/new_rivals.txt`](results/new_rivals.txt)). A bot that read our bet sizes and discards split 64 matches evenly with `cand49`.
+- **Round robin of the 12 strongest** (Stage 2, 4 deal sets per pair, [`results/round_robin_12.txt`](results/round_robin_12.txt)): second with 33 of 44 points, behind f21 with 37. f21 is a copy of this bot with one added rule: on the flop, out of position, after it checks, it folds to a bet unless its equity is at least 0.45. On 96 fresh head-to-head matches `cand55` won 56 (37 of 64 long, 19 of 32 short), and the rule added +2 match points (se 6.5) on the general field. The rule was not adopted ([`results/f21_followup.txt`](results/f21_followup.txt)).
+- **Everyone else.** Against the other 28 test bots: 111 of 112 long and 106 of 112 short matches won, 0 forfeits ([`results/rest_cand55.txt`](results/rest_cand55.txt)).
 
 ## The game
 
@@ -96,14 +103,14 @@ The organisers' starter kit (`engine.py`, `random_bot.py`, the rulebook and the 
    python build/mkzip.py submission/bot.py dist/submission.zip
    ```
 
-The bot reads nothing from disk, so the zip holds one file. `submission/bot.py` has md5 `c5d98d0b90b401a9a80f7a2b6cf4c873`.
+The bot reads nothing from disk, so the zip holds one file. `submission/bot.py` has md5 `9b88e522579fdbccd57149b512f11122`.
 
 ## Repository layout
 
 | Path | Contents |
 |---|---|
 | [`submission/bot.py`](submission/bot.py) | The entry. Self-contained: the decision code, the preflop table and the trained solver strategy, embedded as compressed text. |
-| [`build/`](build/) | How the entry was assembled: `build_veto.py` merges the solver into the decision code, `cleanup.py` removes the lead-lock code the two-leg rules made useless, then `fix20.py`, `fix29.py`, `fix30.py`, `fix31.py`, `fix32.py` (with `E1=1`), `fix34.py` (with `W=1`), `fix33.py` and `fix38.py` apply the later fixes in that order, and `mkzip.py` makes the upload zip. |
+| [`build/`](build/) | How the entry was assembled: `build_veto.py` merges the solver into the decision code, `cleanup.py` removes the lead-lock code the two-leg rules made useless, then `fix20.py`, `fix29.py`, `fix30.py`, `fix31.py`, `fix32.py` (with `E1=1`), `fix34.py` (with `W=1`), `fix33.py`, `fix38.py`, `fix40.py` and `fix43.py` apply the later fixes in that order, and `mkzip.py` makes the upload zip. |
 | [`solver/`](solver/) | The CFR trainer (`train.py`), the abstraction it solves (`bot/abstraction.py`), a standalone solver bot, self-checks and [`NOTES.md`](solver/NOTES.md). `bot/strategy.py` here is a small untrained smoke table. The trained table is the one inside `submission/bot.py`. |
 | [`lab/`](lab/) | The test harness: match runners, paired comparisons, the round robin, the divergence analysis, test-opponent generators and the release checks. See [How we tested](#how-we-tested). |
 | [`lab/candidates/`](lab/candidates/) | Patches for changes that were tested and either rejected or are still being tested. |
@@ -116,10 +123,10 @@ The bot reads nothing from disk, so the zip holds one file. `submission/bot.py` 
 
 | Rule | What this entry does |
 |---|---|
-| Python 3.11, standard library, NumPy and SciPy only | Standard library and NumPy. Tested under NumPy 2.4.6, 1.26 and 1.23 on Python 3.11 ([`results/numpy_versions_cand41.txt`](results/numpy_versions_cand41.txt)). |
+| Python 3.11, standard library, NumPy and SciPy only | Standard library and NumPy. Tested under NumPy 2.4.6, 1.26 and 1.23 on Python 3.11 ([`results/numpy_versions_cand55.txt`](results/numpy_versions_cand55.txt)). |
 | One `bot.py`, or a zip with `bot.py` at the top, at most 5 MB | One `bot.py` of 1.4 MB. The zip is 1.0 MB. |
 | No writing files, no network, no subprocesses | None of these are used. All tables are embedded in the file and decoded in memory at start-up. |
-| 1 vCPU, 1 GB RAM | Runs on one core. Peak memory 75 MB. |
+| 1 vCPU, 1 GB RAM | Runs on one core. Peak memory 77 MB. |
 | Time bank, crash means forfeit | The bot paces itself against the bank and gets simpler when time runs short (see [Robustness](#robustness)). Any exception inside a decision falls back to a legal check, fold or discard, so a bad message cannot crash it. |
 | Own work, no copied bot code | All code was written by the team. The algorithms are published ones: CFR and its discounted variant, pseudo-harmonic action mapping, Bayesian range updates. See [Citations](#third-party-code-and-citations). |
 | No state between legs | Each leg starts from the same priors. Nothing is written or read between legs. |
@@ -150,7 +157,7 @@ flowchart TD
 1. **State.** Every request replays the history the engine sends. The bot tracks the pot, both bets, the raise count and the class of each opponent action: fold, check or call, or raise (small, medium, big, all-in). A test harness confirmed the tracked state matches the engine's on every request over 300 hands against 6 styles of opponent.
 2. **Hand tables.** On each street, NumPy scores all 1,326 two-card hands on the current board. The turn and river are enumerated exactly. The flop samples 240 runouts, fewer if time runs short. Preflop and flop decisions use 3-card hands and a model of which two cards each player will keep.
 3. **Opponent range.** A weight for every possible opponent hand. Each opponent action is read as a slice of the strength order. For example, a raise that this opponent makes 20% of the time keeps the strongest 20% of the remaining range, softened by a learnt rate of off-pattern plays such as bluffs and slow-plays. The shown discard removes hands the opponent would not have thrown that card from. The model of how this opponent discards (best keep, lowest card, or random) is learnt from showdowns.
-4. **Opponent model.** Counters of the opponent's fold, call and raise choices, kept at three levels of detail (all streets, per street, per bet size). They start from priors and move towards this opponent's actual habits.
+4. **Opponent model.** Counters of the opponent's fold, call and raise choices, kept at three levels of detail (all streets, per street, per bet size). They start from priors and move towards this opponent's actual habits. The opponent's first action on a street after the flop is also counted by position, because opening a street and answering our check are different decisions.
 5. **Expected value.** Fold is 0. A call wins its equity share of the pot, adjusted for the streets still to come. A raise adds the chance the opponent folds now, and values their call and their re-raise separately. Raise sizes come from the pot (a third, two thirds, one pot, one and a half pots, all-in) and from the bet faced.
 6. **Solver check.** The CFR strategy follows the same hand. If it plays an option kind (fold, check or call, raise) under 10% of the time in the matching spot, that kind is removed, as long as another option remains. Exploiting an opponent can then never take the bot far from sound play. Two cases switch the check off: a bet the solver's tree has no size for, and a spot that has left the tree.
 7. **Choice.** A softmax over the remaining EVs. Options more than three temperatures below the best are never picked. The randomness stops an observant opponent from reading exact thresholds.
@@ -177,7 +184,7 @@ Playing alone, the solver came third in the round robin above. It is hard to bea
 
 **Paired comparisons.** A change is tested by running the old and the new version on the same deal sets against the same opponents. Each result below gives the difference with its standard error (se), the size of the swing that luck alone can cause. A difference under 2 se is treated as no difference. Seeds are never reused once a decision has been made on them.
 
-**Test field** (33 opponents):
+**Test field** (33 opponents, and 14 more added on 7 Nov):
 
 | Group | Bots |
 |---|---|
@@ -185,6 +192,7 @@ Playing alone, the solver came third in the round robin above. It is hard to bea
 | Rivals written only from the organisers' documents | f1 to f11, each written separately with no view of our code. f10 targets common styles. f11 is the strongest of them. |
 | Earlier rival bots | rival_a, rival_b, rival_c and two variants, plus locker, which folds out a leg once its lead covers the remaining blinds |
 | Fixed styles | 14 simple bots: always call, always shove, maniac, nit, min-raiser, pot-odds caller, loose, tight and others |
+| Added on 7 Nov | f18, f19 and f21 (copies of this bot with one habit changed), f20 (written from the organisers' documents only), and a3 to a15 (10 bots, each written to one common playing style) |
 
 **Test opponents for single weaknesses.** Wrappers rewrite one habit of a strong bot and leave the rest unchanged. The generators are in `lab/`:
 - `minrr_gen.py` makes re-raises minimum-sized.
@@ -196,15 +204,16 @@ Playing alone, the solver came third in the round robin above. It is hard to bea
 
 A fix has to win its targeted test and must not lose to the general field.
 
-**Code reviews, bots built to beat it, and blind rivals.** Eight independent reviews each checked one part of the code by running it:
+**Code reviews, bots built to beat it, and blind rivals.** Ten independent reviews checked the code by running it. Two read the whole bot; the others each took one part:
 - state tracking against the engine, over 11,457 replayed decisions;
 - the opponent model's counters;
 - EV formulas;
 - equity numbers against a brute-force count;
 - the preflop path;
-- every assumption the solver makes, and how its strategy is looked up during play.
+- every assumption the solver makes, and how its strategy is looked up during play;
+- time and forfeit safety: reply times, bank pacing, start-up and every crash path.
 
-Bots were also written with full access to the code to beat this one. Each finding became a candidate change and went through the paired tests. Two more rivals were written from the official documents alone, as a check against opponents nothing was tuned on. `lab/audit.py` scans match logs for moves that are wrong whatever the opponent holds: none were found in over 32,000 river decisions.
+Bots were also written with full access to the code to beat this one. Each finding became a candidate change and went through the paired tests. Two more rivals were written from the official documents alone, as a check against opponents nothing was tuned on. `lab/audit.py` scans match logs for moves that are wrong whatever the opponent holds: none were found in over 16,000 river decisions.
 
 **Main tools in `lab/`:**
 
@@ -237,13 +246,17 @@ Bots were also written with full access to the code to beat this one. Each findi
 | Bets just below all-in were read as cheap, and the solver check was off for them | A copy of the bot that bets all-in minus 2 chips beat `cand20` in 31 of 32 long matches; after the fix, +16 points (se 3.2) against it and +5 (se 7.3) against the general field | Kept (`cand29`) |
 | The share of weak hands seen behind big bets was applied as a per-hand weight, so a bet made 10% of the time was read as 57% weak when 15% were | Re-raises over turn bets of 1.2x the pot or more lost 48 chips each (se 13); after the fix, +32 points over 128 deal sets (se 7.5) against value big-bet bots, no loss against big-bet bluffers, +11 (se 7.0) against the general field | Kept (`cand36`) |
 | A call at the raise cap or with us all-in read as "chose not to raise"; the call EV took the call off the stack twice | Bugs shown by replaying logged decisions | Kept (`cand36`) |
-| Exact card removal in the preflop table | +256 chips per long match against f7 (se 123), but no gain on the general field, and -6 points (se 6.9) on top of `cand36` | Rejected |
+| Exact card removal in the preflop table | +256 chips per long match against f7 (se 125), but no gain on the general field, and -6 points (se 6.9) on top of `cand36` | Rejected |
 | Slow-play rate learnt as P(passive given strong) | -4 points (se 4.2) against the trap bot it was meant for | Rejected |
 | Corrections where real bets meet the solver's tree; no solver check for bets far cheaper than the tree size | -3 points (se 3.3) against min-bet bots; -88 chips per match (se 65) against min-raise bots | Rejected |
 | Separate counters for acting first and acting after our check or limp | -2.5 points (se 4.6) against bots that raise every limp | Rejected |
 | Range slices read inside equity buckets (the old slice dropped one bucket and kept another whole, overstating preflop equity when called); solver features rounded as in training | +20 points (se 8.5) over 240 short matches, better against 9 of 10 strong bots; -4 (se 6.9) over 240 long ones; level against the blind rivals | Kept (`cand41`) |
 | Six changes tested after `cand41`: flop range slices in the action model's order, a solver retrained with smaller re-raises, no solver check facing an all-in, each preflop action counted once, separate counters for the limper facing our raise, separate counters for the answer to our first bet after the opponent checked | None beat `cand41` beyond luck in its tests ([`decisions.tsv`](decisions.tsv) steps 28 to 33, [`results/candidates_after_cand41.txt`](results/candidates_after_cand41.txt)) | Not shipped |
 | Discard result skipped when a time panic left no flop tables (the old code raised a caught error and wrote a stderr line every hand) | With the bank cut to 900 ms: 181 stderr lines before, 0 after ([`results/time_panic_cand49.txt`](results/time_panic_cand49.txt)). Normal play never reaches the guard | Kept (`cand49`) |
+| A message line that is valid JSON but not an object, such as `[]` or `null`, ended the process, a forfeit. The organisers' engine sends only objects | Before: exit code 1. After: the line is skipped, exit code 0, and match logs are identical on three fixed deal sets ([`results/input_guard.txt`](results/input_guard.txt)) | Kept (`cand55`) |
+| One counter held two decisions after the flop: opening a street, and answering our check | A practice bot that always checks first and bets when checked to won 27 of 32 long matches against `cand49`. After the fix: +14 points (se 3.2) long and +11 (se 3.7) short against it; general field +4 (se 6.5) long, -3 (se 8.6) short; blind rivals +3 (se 3.6) long, +2 (se 4.7) short | Kept (`cand55`) |
+| Separate counters for 0.66-pot and pot-sized bets (opponents folded 13 to 28 points more often to the pot-sized bet) | On top of the position counters: -3 points (se 1.7) long and +5 (se 3.6) short against the new rivals, +2 (se 2.5) long against the blind rivals; below the 2-se bar set before the results ([`results/size_slots.txt`](results/size_slots.txt)) | Not shipped |
+| f21's rule: on the flop, out of position, after checking, fold to a bet unless equity is at least 0.45 | First in the 12-bot round robin by 4 points, but `cand55` won 56 of 96 fresh head-to-head matches, and the rule added +2 points (se 6.5) on the general field; below the 2-se bar set before the results ([`results/f21_followup.txt`](results/f21_followup.txt)) | Not shipped |
 
 ## Robustness
 
@@ -255,21 +268,25 @@ From [`results/engine_checks_cand41.txt`](results/engine_checks_cand41.txt), [`r
 | Time used, Stage 2 against the starter bot | About 35 s of the 75 s bank per leg |
 | CPU slowed to one sixth (5 busy processes on the same core) | Stage 1: 26.8 s of 30 s per leg. Stage 2: 67.3 s of 75 s per leg. 0 notices. |
 | Start-up to exit | 0.84 to 0.91 s (limit 5 s) |
-| Peak memory | 75 MB (limit 1 GB) |
+| Peak memory | 77 MB (limit 1 GB) |
 | Unknown message types and fields | Ignored, 0 notices |
 | A 998-hand match | Clean |
 | NumPy 1.26 and 1.23 | Clean |
 
 `cand49` passed the same checks: 17 matches, 0 forfeits, 0 notices, 0 stderr lines; on the slowed CPU an average of 25.4 s of 30 s per Stage 1 leg and 64.1 s of 75 s per Stage 2 leg ([`results/engine_checks_cand49.txt`](results/engine_checks_cand49.txt), [`results/slow_core_cand49.txt`](results/slow_core_cand49.txt), [`results/numpy_versions_cand49.txt`](results/numpy_versions_cand49.txt)).
 
+`cand55` passed them again: 11 matches on the organisers' engine with 0 forfeits, 0 notices and 0 stderr lines; start-up to exit 0.76 to 0.79 s; NumPy 1.26 and 1.23 clean; on the slowed CPU 25.5 s of 30 s per Stage 1 leg and 63.4 s of 75 s per Stage 2 leg. `lab/audit.py` found no move that loses whatever the opponent holds in 4,086 river decisions and 326 turn folds ([`results/engine_checks_cand55.txt`](results/engine_checks_cand55.txt), [`results/slow_core_cand55.txt`](results/slow_core_cand55.txt), [`results/numpy_versions_cand55.txt`](results/numpy_versions_cand55.txt), [`results/audit_cand55.txt`](results/audit_cand55.txt)).
+
 How the bot handles time: the solver view runs only while the match is ahead of a schedule that spreads 80% of the bank evenly over the hands. Flop runouts shrink from 240 to 60 when the bank runs low. Below 1 s of bank it checks or folds. Replies take well under the 5 s per-reply limit.
 
 ## Limitations
 
-- Every opponent we tested against was built by us or written for this test. None is a real entrant, so the strength of the real field is unknown.
+- Every opponent in these results was built by us or written for this test, so the strength of the real field is unknown.
 - f7, an independent CFR solver, is the closest matchup: about two wins in three over long matches. A stronger solver than any we built could beat this bot.
-- The bot that sets traps came out even with `cand20`. It may hold a small real edge (about 0.2 chips per hand), within luck so far. The fix aimed at it did worse and was rejected.
+- The bot that sets traps came out even with `cand20`. It may hold a small real edge (about 0.1 chips per hand), within luck so far. The fix aimed at it did worse and was rejected.
 - f17, a rival built around fast opponent modelling, won 14 of 32 short Stage 1 matches against this bot, though only 4 of 32 long ones ([`results/blind_rivals.txt`](results/blind_rivals.txt)). Short matches give our opponent model less time to learn.
+- f21, a copy of this bot with one extra fold rule, finished 4 points ahead of it in the 12-bot round robin and split their 4 matches. Over 96 more matches this bot won 56 of them. A difference of a few match points either way is still within luck.
+- This bot won 11 of 16 short matches against f20, written from the documents only, and 15 of 16 long ones ([`results/new_rivals.txt`](results/new_rivals.txt)).
 - The opponent model starts from the same priors in both legs. Learning restarts with each fresh process, as the rules require.
 - On a machine much slower than one sixth of our test server, the flop runouts and the solver view are cut back, and play gets simpler.
 

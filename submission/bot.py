@@ -266,7 +266,7 @@ def prior(stc, lvl, sz):
 
 class Opp:
     """Action counters at three levels of detail, backed off onto the prior."""
-    K_POOL, K_SPEC = 6.0, 4.0
+    K_POOL, K_SPEC, K_SLOT = 6.0, 4.0, 4.0
 
     def __init__(self):
         self.counts = {}
@@ -276,7 +276,7 @@ class Opp:
         self.pas_n, self.pas_off = [0.0] * 4, [0.0] * 4
         self.disc_ll = np.array([0.0, -1.0, -1.0])  # smart, drop lowest, random
 
-    def _dist(self, st, lvl, sz):
+    def _dist(self, st, lvl, sz, slot=None):
         lvl = min(lvl, 3)
         stc = 1 if st else 0
         pool = self.counts.get((stc, lvl, sz))
@@ -286,18 +286,25 @@ class Opp:
         spec = self.counts.get((10 + st, lvl, sz))
         if spec is not None:
             p = (spec + self.K_SPEC * p) / (spec.sum() + self.K_SPEC)
+        if slot is not None:
+            c = self.counts.get((30 + st, lvl, slot))
+            if c is not None:
+                p = (c + self.K_SLOT * p) / (c.sum() + self.K_SLOT)
         return p
 
-    def dist(self, st, lvl, sz):
-        key = (st, min(lvl, 3), sz)
+    def dist(self, st, lvl, sz, slot=None):
+        key = (st, min(lvl, 3), sz, slot)
         p = self.cache.get(key)
         if p is None:
-            p = self.cache[key] = self._dist(st, lvl, sz)
+            p = self.cache[key] = self._dist(st, lvl, sz, slot)
         return p
 
-    def add(self, st, lvl, sz, action):
+    def add(self, st, lvl, sz, action, slot=None):
         lvl = min(lvl, 3)
-        for key in ((1 if st else 0, lvl, sz), (10 + st, lvl, sz)):
+        keys = [(1 if st else 0, lvl, sz), (10 + st, lvl, sz)]
+        if slot is not None:
+            keys.append((30 + st, lvl, slot))
+        for key in keys:
             c = self.counts.get(key)
             if c is None:
                 c = self.counts[key] = np.zeros(6)
@@ -509,14 +516,15 @@ class Bot:
         st = STREET[entry["street"]]
         action = entry["action"]
         lvl, sz = h.raises, h.sz
-        p = self.opp.dist(st, lvl, sz)
+        slot = (6 if h.button else 7) if lvl == 0 and st > 0 else None  # opens, or answers our check
+        p = self.opp.dist(st, lvl, sz, slot)
         if action == "raise":
             faced = h.bets[0]
             ratio = (entry["amount"] - faced) / max(1.0, h.pot() + faced - h.bets[1])
             a = RS + sz_bucket(ratio)
         else:
             a = FOLD if action == "fold" else PASS
-        self.opp.add(st, lvl, sz, a)
+        self.opp.add(st, lvl, sz, a, slot)
         if action != "fold" and st == h.table_st:
             self.narrow(st, a, p)
         h.apply(1, action, entry.get("amount"))
@@ -674,7 +682,7 @@ class Bot:
         h = self.h
         if ip or st == 0:  # preflop a check is the big blind's, and it ends the street
             return self.value(eq, P, behind, st, ip)
-        p = self.opp.dist(st, h.raises, h.sz)
+        p = self.opp.dist(st, h.raises, h.sz, None if h.raises else 7)  # out of position: it answers our check
         b = float(p[RS:].sum())
         B = min(0.7 * P, behind)
         lo = window(b, 1.0)
@@ -13816,6 +13824,8 @@ def main():
         try:
             msg = json.loads(line)
         except ValueError:
+            continue
+        if not isinstance(msg, dict):
             continue
         t = msg.get("type")
         reply = None
