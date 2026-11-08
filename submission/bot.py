@@ -15,9 +15,14 @@ Only stdlib and numpy. No files, no network.
 """
 import base64
 import json
+import os
 import sys
 import time
 import zlib
+
+# One vCPU: without this, numpy's BLAS starts a thread per visible core at import, each reserving address space.
+for _v in ("OPENBLAS_NUM_THREADS", "OMP_NUM_THREADS", "MKL_NUM_THREADS"):
+    os.environ[_v] = "1"
 
 import numpy as np
 
@@ -13796,6 +13801,11 @@ def solver_view(solver, req):
         # A bet that leaves the bettor under a fifth of the pot behind is a shove in all but name.
         if req.get("opp_stack", 0) > 0.2 * (req["pot"] + req["to_call"]) and all(a in ("f", "c") for a in node.actions):
             return None
+        # A bet smaller than any tree size was replayed as the smallest one: the split answers a dearer bet.
+        if req["to_call"] > 0:
+            ab_call = node.bets[1 - node.player] - node.bets[node.player]
+            if req["to_call"] / (req["pot"] + req["to_call"]) < 0.8 * ab_call / max(1, node.pot + ab_call):
+                return None
         street = sb.STREET[req["street"]]
         bucket, _ = solver.features(street, [sb.A.card_id(c) for c in req["board"]])
         p = solver.strategy.probs(node, bucket)
@@ -13817,13 +13827,17 @@ def main():
         print("solver off:", repr(exc), file=sys.stderr)
         solver = None
     bank = bot.time_left
+    try:  # a byte that is not UTF-8 becomes U+FFFD instead of ending the read loop
+        sys.stdin.reconfigure(errors="replace")
+    except Exception:
+        pass
     for line in sys.stdin:
         line = line.strip()
         if not line:
             continue
         try:
             msg = json.loads(line)
-        except ValueError:
+        except Exception:  # not JSON, or nested too deep to parse
             continue
         if not isinstance(msg, dict):
             continue
@@ -13856,10 +13870,13 @@ def main():
                 break
         except Exception as exc:  # a forfeit costs far more than one bad decision
             print("error:", repr(exc), file=sys.stderr)
-            if t == "action_request":
-                reply = panic_action(msg)
-            elif t == "discard_request":
-                reply = {"type": "discard", "card": msg["hole_cards"][0]}
+            try:
+                if t == "action_request":
+                    reply = panic_action(msg)
+                elif t == "discard_request":
+                    reply = {"type": "discard", "card": min(msg["hole_cards"], key=lambda c: RANKS.find(str(c)[:1]))}
+            except Exception:  # the request itself is broken; any well-formed reply avoids a forfeit
+                reply = {"type": "action", "action": "fold"} if t == "action_request" else {"type": "discard", "card": "2s"}
         if reply is not None:
             sys.stdout.write(json.dumps(reply) + "\n")
             sys.stdout.flush()

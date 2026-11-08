@@ -1,0 +1,139 @@
+Review round of 8 Nov on cand55 (the entry until then), and what cand72 changed.
+cand72 = cand55 + build/fix44.py (one BLAS thread, read loop and fallbacks) + build/fix45.py (no solver check
+when the real price to call is under 0.8 of the price the solver's tree answered). Organisers' engine, two legs.
+
+== Start-up memory (lab copy of the probe: Python 3.11.15, 14 cores visible). After the first reply: thread count
+== and address space (VmPeak, VmSize) and resident memory (VmRSS); then whether the bot answers its first request
+== under each address-space cap (RLIMIT_AS). 'set by parent' runs the bot with OPENBLAS_NUM_THREADS=1 already set.
+python 3.11.15 | cores visible: 14
+
+../vers/cand55/bot.py [as shipped] no cap: reply=True in 0.85 s, {'VmPeak': '672348 kB', 'VmSize': '672348 kB', 'VmRSS': '57880 kB', 'Threads': '14'}
+   RLIMIT_AS   256 MB: FAILS (exit 1) | OpenBLAS error: Memory allocation still failed after 10 retries, giving up. | OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+   RLIMIT_AS   384 MB: FAILS (exit 1) | OpenBLAS error: Memory allocation still failed after 10 retries, giving up. | OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+   RLIMIT_AS   512 MB: FAILS (exit 1) | OpenBLAS error: Memory allocation still failed after 10 retries, giving up. | OpenBLAS error: Memory allocation still failed after 10 retries, giving up.
+   RLIMIT_AS   640 MB: replies (exit 0) 
+   RLIMIT_AS   768 MB: replies (exit 0) 
+   RLIMIT_AS  1024 MB: replies (exit 0) 
+   RLIMIT_AS  1536 MB: replies (exit 0) 
+   RLIMIT_AS  2048 MB: replies (exit 0) 
+
+../vers/cand55/bot.py [OPENBLAS_NUM_THREADS=1 set by parent] no cap: reply=True in 0.82 s, {'VmPeak': '139848 kB', 'VmSize': '139848 kB', 'VmRSS': '57760 kB', 'Threads': '1'}
+   RLIMIT_AS   256 MB: replies (exit 0) 
+   RLIMIT_AS   384 MB: replies (exit 0) 
+   RLIMIT_AS   512 MB: replies (exit 0) 
+   RLIMIT_AS   640 MB: replies (exit 0) 
+   RLIMIT_AS   768 MB: replies (exit 0) 
+   RLIMIT_AS  1024 MB: replies (exit 0) 
+   RLIMIT_AS  1536 MB: replies (exit 0) 
+   RLIMIT_AS  2048 MB: replies (exit 0) 
+
+../vers/cand72/bot.py [as shipped] no cap: reply=True in 0.76 s, {'VmPeak': '140028 kB', 'VmSize': '140028 kB', 'VmRSS': '57984 kB', 'Threads': '1'}
+   RLIMIT_AS   256 MB: replies (exit 0) 
+   RLIMIT_AS   384 MB: replies (exit 0) 
+   RLIMIT_AS   512 MB: replies (exit 0) 
+   RLIMIT_AS   640 MB: replies (exit 0) 
+   RLIMIT_AS   768 MB: replies (exit 0) 
+   RLIMIT_AS  1024 MB: replies (exit 0) 
+   RLIMIT_AS  1536 MB: replies (exit 0) 
+   RLIMIT_AS  2048 MB: replies (exit 0) 
+
+../vers/cand72/bot.py [OPENBLAS_NUM_THREADS=1 set by parent] no cap: reply=True in 0.81 s, {'VmPeak': '140028 kB', 'VmSize': '140028 kB', 'VmRSS': '57952 kB', 'Threads': '1'}
+   RLIMIT_AS   256 MB: replies (exit 0) 
+   RLIMIT_AS   384 MB: replies (exit 0) 
+   RLIMIT_AS   512 MB: replies (exit 0) 
+   RLIMIT_AS   640 MB: replies (exit 0) 
+   RLIMIT_AS   768 MB: replies (exit 0) 
+   RLIMIT_AS  1024 MB: replies (exit 0) 
+   RLIMIT_AS  1536 MB: replies (exit 0) 
+   RLIMIT_AS  2048 MB: replies (exit 0) 
+
+== Fuzz run on cand55: 32 runs of random legal and odd play (13 x 3000 hands clean, 13 x 3000
+== with odd stacks, 6 x 1500 with missing fields), then 1000-hand Stage 2 matches against 7 odd bots (6 seeds
+== each) and 2 Stage 1 matches against a bot that sleeps before replying (it forfeits). Flag lines would start
+== with FAILFILE, NOTOK, MISSFAIL, AFORFEIT, ANOTICE or ASTDERR; there are none.
+FUZZ 03:41
+replies 7754  mean 7.2 ms  p99 57.5 ms  max 83.7 ms
+replies 8758  mean 7.1 ms  p99 56.6 ms  max 84.7 ms
+replies 7543  mean 7.2 ms  p99 58.4 ms  max 88.4 ms
+     42 Result: A wins
+      2 Result: A wins by forfeit; A's delta is set to +400
+
+== Practice bots written with our code in hand, against cand55, Stage 2 seeds 5001-5060 (60 long matches each).
+== x5base reads nothing (the control). x5shove: calls an all-in only with equity 0.90 or more against our
+== range. x5sizes: reads our bet size as a strength ladder. x5check: raises our limps and bets after our checks.
+== x5all: all three plus a read of our shown discard. x6minbet: a copy of cand55 that bets the minimum where it
+== would check. x6fake: x6minbet plus discards chosen to mislead. x6minraise: re-raises by the minimum.
+== x6overbet: bets 2 to 3 pots.
+hunt/x_x5base_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 49.4
+  x5base       n  60  won  60  tied  0  lost   0  win% 100.0  mean capped chips  +988.1
+  ALL          n  60  won  60  tied  0  lost   0  win% 100.0
+hunt/x_x5shove_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 49.9
+  x5shove      n  60  won  57  tied  0  lost   3  win%  95.0  mean capped chips  +892.5
+  ALL          n  60  won  57  tied  0  lost   3  win%  95.0
+hunt/x_x5sizes_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 48.0
+  x5sizes      n  60  won  60  tied  0  lost   0  win% 100.0  mean capped chips +1000.0
+  ALL          n  60  won  60  tied  0  lost   0  win% 100.0
+hunt/x_x5check_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 44.3
+  x5check      n  60  won  60  tied  0  lost   0  win% 100.0  mean capped chips  +976.5
+  ALL          n  60  won  60  tied  0  lost   0  win% 100.0
+hunt/x_x5all_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 43.5
+  x5all        n  60  won  60  tied  0  lost   0  win% 100.0  mean capped chips  +992.9
+  ALL          n  60  won  60  tied  0  lost   0  win% 100.0
+hunt/x_x6minbet_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 35.0
+  x6minbet     n  60  won  22  tied  0  lost  38  win%  36.7  mean capped chips  -240.1
+  ALL          n  60  won  22  tied  0  lost  38  win%  36.7
+hunt/x_x6fake_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 34.9
+  x6fake       n  60  won  26  tied  0  lost  34  win%  43.3  mean capped chips   -70.1
+  ALL          n  60  won  26  tied  0  lost  34  win%  43.3
+hunt/x_x6minraise_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 35.8
+  x6minraise   n  60  won  57  tied  0  lost   3  win%  95.0  mean capped chips  +905.3
+  ALL          n  60  won  57  tied  0  lost   3  win%  95.0
+hunt/x_x6overbet_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 35.1
+  x6overbet    n  60  won  37  tied  0  lost  23  win%  61.7  mean capped chips  +239.7
+  ALL          n  60  won  37  tied  0  lost  23  win%  61.7
+
+== cand55's chips per match against each (raw, and capped at +-1000), with se and z = mean / se:
+x_x5base_s2.jsonl            raw    n 60 mean  +2417.8 se  117.3 z +20.62  won 60
+x_x5base_s2.jsonl            capped n 60 mean   +988.1 se   10.0 z +99.12  won 60
+x_x5shove_s2.jsonl           raw    n 60 mean  +1595.2 se  105.9 z +15.06  won 57
+x_x5shove_s2.jsonl           capped n 60 mean   +892.5 se   35.8 z +24.93  won 57
+x_x5sizes_s2.jsonl           raw    n 60 mean  +4293.5 se  116.6 z +36.83  won 60
+x_x5sizes_s2.jsonl           capped n 60 mean  +1000.0 se    0.0 z  +inf  won 60
+x_x5check_s2.jsonl           raw    n 60 mean  +2203.3 se  113.6 z +19.40  won 60
+x_x5check_s2.jsonl           capped n 60 mean   +976.5 se   12.0 z +81.13  won 60
+x_x5all_s2.jsonl             raw    n 60 mean  +4244.5 se  135.1 z +31.43  won 60
+x_x5all_s2.jsonl             capped n 60 mean   +992.9 se    7.1 z +138.86  won 60
+x_x6minbet_s2.jsonl          raw    n 60 mean   -315.7 se   95.6 z -3.30  won 22
+x_x6minbet_s2.jsonl          capped n 60 mean   -240.1 se   77.8 z -3.09  won 22
+x_x6fake_s2.jsonl            raw    n 60 mean    -82.0 se   92.6 z -0.89  won 26
+x_x6fake_s2.jsonl            capped n 60 mean    -70.1 se   77.5 z -0.90  won 26
+x_x6minraise_s2.jsonl        raw    n 60 mean  +2366.2 se  175.8 z +13.46  won 57
+x_x6minraise_s2.jsonl        capped n 60 mean   +905.3 se   44.2 z +20.47  won 57
+x_x6overbet_s2.jsonl         raw    n 60 mean   +303.6 se  116.6 z +2.60  won 37
+x_x6overbet_s2.jsonl         capped n 60 mean   +239.7 se   87.6 z +2.74  won 37
+
+== Gap to the control on the same deals: cand55's chips against each reader minus its chips against x5base.
+== Negative = the read gains the reader chips. Rule set before the results: a read is a leak only below -2 se.
+x_x5shove_s2.jsonl             minus base raw    n 60 diff   -822.5 se  123.5 z  -6.66
+x_x5shove_s2.jsonl             minus base capped n 60 diff    -95.5 se   37.0 z  -2.58
+x_x5sizes_s2.jsonl             minus base raw    n 60 diff  +1875.8 se  157.6 z +11.90
+x_x5sizes_s2.jsonl             minus base capped n 60 diff    +11.9 se   10.0 z  +1.20
+x_x5check_s2.jsonl             minus base raw    n 60 diff   -214.4 se  129.3 z  -1.66
+x_x5check_s2.jsonl             minus base capped n 60 diff    -11.5 se   15.9 z  -0.72
+x_x5all_s2.jsonl               minus base raw    n 60 diff  +1826.7 se  161.7 z +11.30
+x_x5all_s2.jsonl               minus base capped n 60 diff     +4.8 se   12.4 z  +0.39
+
+== The min-bet copy and the min-bet copy with misleading discards, against cand72 on the same deals:
+hunt/x_x6minbet_vs_cand72_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 33.0
+  x6minbet     n  60  won  53  tied  0  lost   7  win%  88.3  mean capped chips  +691.5
+  ALL          n  60  won  53  tied  0  lost   7  win%  88.3
+hunt/x_x6fake_vs_cand72_s2.jsonl stage S2 rows 60 forfeits 0 notices 0 max time 33.0
+  x6fake       n  60  won  60  tied  0  lost   0  win% 100.0  mean capped chips  +959.9
+  ALL          n  60  won  60  tied  0  lost   0  win% 100.0
+x_x6minbet_vs_cand72_s2.jsonl raw    n 60 mean  +1127.5 se  115.4 z +9.77  won 53
+x_x6minbet_vs_cand72_s2.jsonl capped n 60 mean   +691.5 se   61.6 z +11.22  won 53
+x_x6fake_vs_cand72_s2.jsonl  raw    n 60 mean  +2261.6 se  125.0 z +18.09  won 60
+x_x6fake_vs_cand72_s2.jsonl  capped n 60 mean   +959.9 se   18.7 z +51.32  won 60
+-- cand72 minus cand55 against x6minbet, and against x6fake (paired by deal):
+S2 all 60 seeds: points B-A +31.0 (se 4.6)  capped/match B-A +931.6 (se 99.0)
+S2 all 60 seeds: points B-A +34.0 (se 3.9)  capped/match B-A +1030.0 (se 77.0)

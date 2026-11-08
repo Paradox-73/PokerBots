@@ -1,0 +1,81 @@
+cand72 against cand55 on the same deals. cand53's rows stand for cand55 on the battery: cand55 plays exactly as
+cand53 (results/cand55_vs_cand41_field.txt). B = cand72. Points = match points, capped = chips per match clipped.
+
+General field: the 10 strongest test bots, seeds 401-424, A = cand53.
+S2 cfrS       seeds  24  rows A  24 B  24  wins A  19.0 B  21.0  capped A  +479 B  +572  B-A   +94
+S2 f10        seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A +1000 B +1000  B-A    +0
+S2 f11        seeds  24  rows A  24 B  24  wins A  20.0 B  22.0  capped A  +614 B  +782  B-A  +168
+S2 f3         seeds  24  rows A  24 B  24  wins A  24.0 B  24.0  capped A  +944 B  +902  B-A   -42
+S2 f7         seeds  24  rows A  24 B  24  wins A  12.0 B  12.0  capped A   +60 B   -43  B-A  -104
+S2 locker     seeds  24  rows A  24 B  24  wins A  21.0 B  20.0  capped A  +805 B  +824  B-A   +19
+S2 rival_a       seeds  24  rows A  24 B  24  wins A  20.0 B  24.0  capped A  +759 B  +977  B-A  +218
+S2 rival_b     seeds  24  rows A  24 B  24  wins A  24.0 B  23.0  capped A  +717 B  +689  B-A   -28
+S2 rival_a2  seeds  24  rows A  24 B  24  wins A  22.0 B  19.0  capped A  +835 B  +651  B-A  -184
+S2 rival_b2 seeds  24  rows A  24 B  24  wins A  23.0 B  21.0  capped A  +857 B  +822  B-A   -36
+S2 all 240 seeds: points B-A +1.0 (se 6.4)  capped/match B-A +10.6 (se 35.6)
+S1 cfrS       seeds  24  rows A  24 B  24  wins A  21.0 B  15.0  capped A  +270 B  +147  B-A  -123
+S1 f10        seeds  24  rows A  24 B  24  wins A  23.0 B  22.0  capped A  +354 B  +335  B-A   -19
+S1 f11        seeds  24  rows A  24 B  24  wins A  17.0 B  16.0  capped A  +175 B  +198  B-A   +23
+S1 f3         seeds  24  rows A  24 B  24  wins A  20.0 B  21.0  capped A  +262 B  +258  B-A    -3
+S1 f7         seeds  24  rows A  24 B  24  wins A  12.0 B  10.0  capped A   +27 B   -27  B-A   -54
+S1 locker     seeds  24  rows A  24 B  24  wins A  17.0 B  18.0  capped A  +277 B  +271  B-A    -6
+S1 rival_a       seeds  24  rows A  24 B  24  wins A  17.0 B  19.0  capped A  +236 B  +277  B-A   +42
+S1 rival_b     seeds  24  rows A  24 B  24  wins A  20.0 B  20.0  capped A  +193 B  +207  B-A   +14
+S1 rival_a2  seeds  24  rows A  24 B  24  wins A  15.0 B  15.0  capped A  +204 B  +202  B-A    -2
+S1 rival_b2 seeds  24  rows A  24 B  24  wins A  19.0 B  17.0  capped A  +234 B  +194  B-A   -40
+S1 all 240 seeds: points B-A -8.0 (se 8.8)  capped/match B-A -16.9 (se 20.5)
+
+Blind rivals f16 and f17 (written from the organisers' documents only), seeds 1001-1032, A = cand53.
+S2 f16        seeds  32  rows A  32 B  32  wins A  32.0 B  29.0  capped A  +928 B  +812  B-A  -117
+S2 f17        seeds  32  rows A  32 B  32  wins A  27.0 B  28.0  capped A  +637 B  +709  B-A   +72
+S2 all 64 seeds: points B-A -2.0 (se 3.5)  capped/match B-A -22.3 (se 79.0)
+S1 f16        seeds  32  rows A  32 B  32  wins A  29.0 B  30.0  capped A  +280 B  +302  B-A   +22
+S1 f17        seeds  32  rows A  32 B  32  wins A  18.0 B  22.0  capped A   +81 B  +120  B-A   +39
+S1 all 64 seeds: points B-A +5.0 (se 4.3)  capped/match B-A +30.8 (se 42.6)
+
+f20 (written from the documents only) and a4 (one common style), seeds 3401-3416, A = cand53.
+S2 a4         seeds  16  rows A  16 B  16  wins A  16.0 B  14.0  capped A  +918 B  +807  B-A  -111
+S2 f20        seeds  16  rows A  16 B  16  wins A  15.0 B  15.0  capped A  +803 B  +814  B-A   +11
+S2 all 32 seeds: points B-A -2.0 (se 1.4)  capped/match B-A -50.0 (se 62.8)
+S1 a4         seeds  16  rows A  16 B  16  wins A  12.0 B  12.0  capped A  +224 B  +209  B-A   -16
+S1 f20        seeds  16  rows A  16 B  16  wins A  11.0 B  11.0  capped A  +173 B  +144  B-A   -29
+S1 all 32 seeds: points B-A +0.0 (se 2.9)  capped/match B-A -22.4 (se 56.7)
+
+Fresh deals, the 14 strongest test bots: Stage 2 seeds 4201-4260 and Stage 1 seeds 4041-4100, A = cand55.
+S2 a4         seeds  60  rows A  60 B  60  wins A  56.0 B  57.0  capped A  +696 B  +774  B-A   +78
+S2 cfrS       seeds  60  rows A  60 B  60  wins A  47.0 B  42.0  capped A  +408 B  +340  B-A   -68
+S2 f10        seeds  60  rows A  60 B  60  wins A  60.0 B  59.0  capped A  +978 B  +958  B-A   -20
+S2 f11        seeds  60  rows A  60 B  60  wins A  58.0 B  54.0  capped A  +796 B  +785  B-A   -11
+S2 f16        seeds  60  rows A  60 B  60  wins A  59.0 B  60.0  capped A  +941 B  +977  B-A   +35
+S2 f17        seeds  60  rows A  60 B  60  wins A  49.0 B  48.0  capped A  +576 B  +579  B-A    +3
+S2 f20        seeds  60  rows A  60 B  60  wins A  55.0 B  55.0  capped A  +745 B  +829  B-A   +84
+S2 f3         seeds  60  rows A  60 B  60  wins A  59.0 B  60.0  capped A  +871 B  +928  B-A   +57
+S2 f7         seeds  60  rows A  60 B  60  wins A  39.0 B  38.0  capped A  +180 B  +183  B-A    +3
+S2 locker     seeds  60  rows A  60 B  60  wins A  56.0 B  53.0  capped A  +856 B  +841  B-A   -15
+S2 rival_a       seeds  60  rows A  60 B  60  wins A  55.0 B  53.0  capped A  +894 B  +854  B-A   -40
+S2 rival_b     seeds  60  rows A  60 B  60  wins A  57.0 B  56.0  capped A  +681 B  +766  B-A   +85
+S2 rival_a2  seeds  60  rows A  60 B  60  wins A  49.0 B  50.0  capped A  +699 B  +738  B-A   +38
+S2 rival_b2 seeds  60  rows A  60 B  60  wins A  56.0 B  56.0  capped A  +879 B  +817  B-A   -62
+S2 all 840 seeds: points B-A -14.0 (se 12.2)  capped/match B-A +12.0 (se 18.2)
+S1 a4         seeds  60  rows A  60 B  60  wins A  50.0 B  53.0  capped A  +218 B  +274  B-A   +57
+S1 cfrS       seeds  60  rows A  60 B  60  wins A  48.0 B  42.0  capped A  +233 B  +172  B-A   -62
+S1 f10        seeds  60  rows A  60 B  60  wins A  60.0 B  51.0  capped A  +380 B  +291  B-A   -90
+S1 f11        seeds  60  rows A  60 B  60  wins A  46.0 B  50.0  capped A  +181 B  +256  B-A   +75
+S1 f16        seeds  60  rows A  60 B  60  wins A  47.0 B  55.0  capped A  +218 B  +321  B-A  +103
+S1 f17        seeds  60  rows A  60 B  60  wins A  49.0 B  39.5  capped A  +237 B  +164  B-A   -73
+S1 f20        seeds  60  rows A  60 B  60  wins A  49.0 B  49.0  capped A  +216 B  +236  B-A   +20
+S1 f3         seeds  60  rows A  60 B  60  wins A  53.0 B  56.0  capped A  +282 B  +350  B-A   +68
+S1 f7         seeds  60  rows A  60 B  60  wins A  33.0 B  34.0  capped A   +50 B   +48  B-A    -3
+S1 locker     seeds  60  rows A  60 B  60  wins A  46.0 B  46.0  capped A  +299 B  +275  B-A   -24
+S1 rival_a       seeds  60  rows A  60 B  60  wins A  44.0 B  42.0  capped A  +274 B  +272  B-A    -2
+S1 rival_b     seeds  60  rows A  60 B  60  wins A  42.0 B  48.0  capped A  +124 B  +208  B-A   +85
+S1 rival_a2  seeds  60  rows A  60 B  60  wins A  32.0 B  31.0  capped A  +156 B  +154  B-A    -2
+S1 rival_b2 seeds  60  rows A  60 B  60  wins A  48.0 B  46.0  capped A  +277 B  +243  B-A   -33
+S1 all 840 seeds: points B-A -4.5 (se 15.8)  capped/match B-A +8.4 (se 10.7)
+
+Forfeits and time notices in cand72's rows:
+  leg_cand72.jsonl 480 rows 0 forfeits 0 with notices
+  blind_cand72.jsonl 128 rows 0 forfeits 0 with notices
+  new_cand72.jsonl 64 rows 0 forfeits 0 with notices
+  rep2_cand72.jsonl 840 rows 0 forfeits 0 with notices
+  rep1_cand72.jsonl 840 rows 0 forfeits 0 with notices
