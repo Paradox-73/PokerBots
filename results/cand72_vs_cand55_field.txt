@@ -183,3 +183,6 @@ Forfeits and time notices in cand72's rows:
   atk3_cand72.jsonl 432 rows 0 forfeits 0 with notices
   rest_cand72.jsonl 224 rows 0 forfeits 0 with notices
   s1c_cand72.jsonl 240 rows 0 forfeits 0 with notices
+
+All 12 paired comparisons above together: 3248 matches, points B-A -23.5 (se 26.9),
+that is -0.72 points per 100 matches (se 0.83).

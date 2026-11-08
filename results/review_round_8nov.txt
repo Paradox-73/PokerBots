@@ -58,6 +58,14 @@ replies 7543  mean 7.2 ms  p99 58.4 ms  max 88.4 ms
      42 Result: A wins
       2 Result: A wins by forfeit; A's delta is set to +400
 
+== The same fuzz run on cand72:
+FUZZ 18:00
+replies 8121  mean 6.8 ms  p99 56.9 ms  max 94.1 ms
+replies 9505  mean 6.5 ms  p99 56.6 ms  max 95.7 ms
+replies 9344  mean 6.5 ms  p99 56.9 ms  max 97.8 ms
+     42 Result: A wins
+      2 Result: A wins by forfeit; A's delta is set to +400
+
 == Practice bots written with our code in hand, against cand55, Stage 2 seeds 5001-5060 (60 long matches each).
 == x5base reads nothing (the control). x5shove: calls an all-in only with equity 0.90 or more against our
 == range. x5sizes: reads our bet size as a strength ladder. x5check: raises our limps and bets after our checks.
@@ -139,3 +147,14 @@ S2 all 60 seeds: points B-A +31.0 (se 4.6)  capped/match B-A +931.6 (se 99.0)
 S2 all 60 seeds: points B-A +34.0 (se 3.9)  capped/match B-A +1030.0 (se 77.0)
 -- cand72 minus cand55 against x6minraise:
 S2 all 60 seeds: points B-A +3.0 (se 1.7)  capped/match B-A +94.7 (se 44.2)
+
+== cand73 = cand72 + fix46 (no preflop all-in while it is more than three pots), against x5shove beside cand72,
+== Stage 2 seeds 5001-5120. Rule set before the result: cand73 minus cand72 in capped chips per match had to be
+== more than 2 se before any field test; it was not, so cand73 was not shipped.
+hunt/x_x5shove_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 49.2
+  x5shove      n 120  won 117  tied  0  lost   3  win%  97.5  mean capped chips  +891.0
+  ALL          n 120  won 117  tied  0  lost   3  win%  97.5
+hunt/x_x5shove_vs_cand73_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 49.2
+  x5shove      n 120  won 118  tied  0  lost   2  win%  98.3  mean capped chips  +943.1
+  ALL          n 120  won 118  tied  0  lost   2  win%  98.3
+S2 all 120 seeds: points B-A +1.0 (se 1.7)  capped/match B-A +52.1 (se 26.1)
