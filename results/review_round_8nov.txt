@@ -137,3 +137,5 @@ x_x6fake_vs_cand72_s2.jsonl  capped n 60 mean   +959.9 se   18.7 z +51.32  won 6
 -- cand72 minus cand55 against x6minbet, and against x6fake (paired by deal):
 S2 all 60 seeds: points B-A +31.0 (se 4.6)  capped/match B-A +931.6 (se 99.0)
 S2 all 60 seeds: points B-A +34.0 (se 3.9)  capped/match B-A +1030.0 (se 77.0)
+-- cand72 minus cand55 against x6minraise:
+S2 all 60 seeds: points B-A +3.0 (se 1.7)  capped/match B-A +94.7 (se 44.2)
