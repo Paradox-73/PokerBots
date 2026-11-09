@@ -1,0 +1,274 @@
+The limp round of 9 Nov. cand72 = the entry at its start. Every candidate adds build/fix49.py (the two preflop
+counting bugs) and then one way of answering a big blind that raised at least 60% of at least 5 of our limps:
+  cand78 = cand72 + build/fix49.py alone.
+  cand79 = cand78 + lab/candidates/fix50.py: every hand may fold at the first action, the limp is priced for calling
+           the raise, our own model answers the raise.
+  cand80 = cand78 + only the last part of fix50 (our own model answers the raise).
+  cand81 = cand78 + lab/candidates/fix51.py: every hand may fold, the limp keeps its old price, the model answers.
+  cand82 = cand79 with the preflop double count of cand72 kept (fix49 part 1 only).
+  cand83 = cand78 + build/fix53.py: only a hand the solver would not open may fold, with its limp priced for calling
+           the raise; the model answers the raise; hands the solver opens keep its advice.
+Organisers' engine, two legs, Stage 2 (500 hands per leg) unless marked S1. Raw = chips per match; capped =
+clipped to +-1000 (S2) or +-400 (S1).
+
+== 1. Where the limp/check reader's gain comes from, against cand72. x5check raises every limp of ours to 10 and
+== bets the turn and river after our check; x5limp only raises our limps; x5stab only bets after our check.
+== Control x5base. Seeds 5001-5120. Negative gap: the reader gains chips over the control.
+hunt/x_x5check_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 48.1
+  x5check      n 120  won 119  tied  0  lost   1  win%  99.2  mean capped chips  +961.2
+hunt/x_x5limp_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 45.5
+  x5limp       n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +984.5
+hunt/x_x5stab_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 50.5
+  x5stab       n 120  won 119  tied  0  lost   1  win%  99.2  mean capped chips  +970.4
+hunt/x_x5base_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 49.2
+  x5base       n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +978.5
+x_x5check_vs_cand72_s2_120.jsonl minus base raw    n 120 diff   -402.6 se  102.0 z  -3.95
+x_x5check_vs_cand72_s2_120.jsonl minus base capped n 120 diff    -17.4 se   20.6 z  -0.85
+x_x5limp_vs_cand72_s2_120.jsonl minus base raw    n 120 diff   -379.6 se   89.8 z  -4.23
+x_x5limp_vs_cand72_s2_120.jsonl minus base capped n 120 diff     +5.9 se   11.7 z  +0.50
+x_x5stab_vs_cand72_s2_120.jsonl minus base raw    n 120 diff   -145.6 se   95.5 z  -1.52
+x_x5stab_vs_cand72_s2_120.jsonl minus base capped n 120 diff     -8.1 se   15.1 z  -0.54
+-- x5stab again on 240 deal sets (5001-5120 and 5301-5420), against cand79, whose play after the flop is cand72's:
+x_x5stab_vs_cand79_s2_240.jsonl minus base raw    n 240 diff    -26.8 se   71.9 z  -0.37
+x_x5stab_vs_cand79_s2_240.jsonl minus base capped n 240 diff     +4.6 se   14.1 z  +0.33
+-- cand78, the counting fix alone, against x5check (seeds 5001-5060; the 2-se gate it failed):
+x_x5check_vs_cand78_s2.jsonl   minus base raw    n 60 diff   -343.4 se  127.7 z  -2.69
+x_x5check_vs_cand78_s2.jsonl   minus base capped n 60 diff    -66.0 se   27.7 z  -2.38
+
+== 2. Why. The solver check drops a move the embedded solver makes under 10% of the time. Shares of preflop hands,
+== weighted by how often they are dealt:
+button first action                actions ['f', 'c', 'r1', 'r2', 'a'] mean f/c/r [0.092 0.399 0.509] vetoed f/c/r [0.875 0.248 0.239]
+big blind after a limp: ['c', 'r1', 'r2', 'a'] [2, 6, 10, 200]
+button facing limp-raise r1        actions ['f', 'c', 'r0.75', 'a'] mean f/c/r [0.241 0.578 0.181] vetoed f/c/r [0.649 0.243 0.722]
+button facing limp-raise r2        actions ['f', 'c', 'r0.75', 'a'] mean f/c/r [0.438 0.463 0.099] vetoed f/c/r [0.459 0.38  0.833]
+button facing limp-raise a         actions ['f', 'c'] mean f/c/r [0.892 0.108 0.   ] vetoed f/c/r [0.09  0.869 1.   ]
+big blind after a limp, mean action shares {'c': np.float64(0.629), 'r1': np.float64(0.15), 'r2': np.float64(0.212), 'a': np.float64(0.009)}
+limping range facing a raise to 10: solver folds 0.596, call vetoed for 0.484 of it
+
+== 3. One logged match each on seed 5003 against x5check (cand72, cand78, cand79) and against x5base (cand72):
+-- cand72 net +1614 against x5check
+A first c                        78
+A first f                        37
+A first r                        385
+A limps                          78
+A then c                         1
+A then f                         77
+B raises the limp                78
+flop: A then c                   10
+flop: A then f                   17
+flop: A then r                   6
+river: A then c                  21
+river: A then f                  46
+river: A then r                  6
+turn: A then c                   15
+turn: A then f                   51
+turn: A then r                   5
+after the raise A c: 1 hands, net +10, mean +10.0; 0 pots of 100+ net +0; the rest net +10
+after the raise A f: 77 hands, net -154, mean -2.0; 0 pots of 100+ net +0; the rest net -154
+-- cand78 net +2433 against x5check
+A first c                        69
+A first f                        47
+A first r                        384
+A limps                          69
+A then c                         13
+A then f                         56
+B raises the limp                69
+flop: A then c                   12
+flop: A then f                   20
+flop: A then r                   5
+river: A then c                  30
+river: A then f                  45
+river: A then r                  6
+turn: A then c                   25
+turn: A then f                   43
+turn: A then r                   5
+after the raise A c: 13 hands, net +52, mean +4.0; 0 pots of 100+ net +0; the rest net +52
+after the raise A f: 56 hands, net -112, mean -2.0; 0 pots of 100+ net +0; the rest net -112
+-- cand79 net +501 against x5check
+A first c                        230
+A first f                        73
+A first r                        197
+A limps                          230
+A then c                         68
+A then f                         11
+A then r                         151
+B raises the limp                230
+flop: A then c                   13
+flop: A then f                   19
+flop: A then r                   2
+river: A then c                  27
+river: A then f                  48
+river: A then r                  5
+turn: A then c                   19
+turn: A then f                   45
+turn: A then r                   2
+after the raise A c: 68 hands, net -601, mean -8.8; 3 pots of 100+ net -446; the rest net -155
+after the raise A f: 11 hands, net -22, mean -2.0; 0 pots of 100+ net +0; the rest net -22
+after the raise A r: 151 hands, net +191, mean +1.3; 22 pots of 100+ net -477; the rest net +668
+-- cand72 net +981 against x5base
+A first c                        87
+A first f                        35
+A first r                        378
+A limps                          87
+A then c                         11
+A then f                         9
+A then r                         1
+B raises the limp                21
+flop: A then c                   12
+flop: A then f                   18
+flop: A then r                   4
+river: A then c                  9
+river: A then f                  24
+river: A then r                  1
+turn: A then c                   17
+turn: A then f                   46
+turn: A then r                   2
+after the raise A -: 66 hands, net -163, mean -2.5; 1 pots of 100+ net -200; the rest net +37
+after the raise A c: 11 hands, net -84, mean -7.6; 0 pots of 100+ net +0; the rest net -84
+after the raise A f: 9 hands, net -18, mean -2.0; 0 pots of 100+ net +0; the rest net -18
+after the raise A r: 1 hands, net +21, mean +21.0; 0 pots of 100+ net +0; the rest net +21
+
+== 4. Against x5limp, each fix paired with cand72 (rule set before the results: more than 2 se better in raw chips):
+x_x5limp_vs_cand79_s2_120.jsonl minus base raw    n 120 diff   +915.8 se  115.0 z  +7.97
+x_x5limp_vs_cand79_s2_120.jsonl minus base capped n 120 diff     +1.4 se   10.7 z  +0.13
+x_x5limp_vs_cand80_s2_120.jsonl minus base raw    n 120 diff    +64.9 se   86.9 z  +0.75
+x_x5limp_vs_cand80_s2_120.jsonl minus base capped n 120 diff    -21.6 se   18.3 z  -1.18
+x_x5limp_vs_cand83_s2_120.jsonl minus base raw    n 120 diff   +221.2 se  104.3 z  +2.12
+x_x5limp_vs_cand83_s2_120.jsonl minus base capped n 120 diff    -16.1 se   12.1 z  -1.33
+
+== 5. The blind rivals f16 and f17 (written from the organisers' documents alone; both raise almost every limp),
+== seeds 1001-1032, each version minus cand72 in match points. cand79 failed this gate.
+cand78 S1 f16 | S1 all 32 seeds: points B-A -1.0 (se 2.3)  capped/match B-A -6.2 (se 49.9)
+cand78 S1 f17 | S1 all 32 seeds: points B-A +3.0 (se 3.9)  capped/match B-A +65.1 (se 76.9)
+cand78 S2 f16 | S2 all 32 seeds: points B-A +2.0 (se 2.0)  capped/match B-A +77.1 (se 92.6)
+cand78 S2 f17 | S2 all 32 seeds: points B-A +1.0 (se 2.7)  capped/match B-A +51.7 (se 135.0)
+cand79 S1 f16 | S1 all 32 seeds: points B-A -4.0 (se 1.9)  capped/match B-A -83.8 (se 47.9)
+cand79 S1 f17 | S1 all 32 seeds: points B-A -6.0 (se 3.9)  capped/match B-A -108.8 (se 75.6)
+cand79 S2 f16 | S2 all 32 seeds: points B-A +0.0 (se 2.0)  capped/match B-A +8.4 (se 83.5)
+cand79 S2 f17 | S2 all 32 seeds: points B-A -4.0 (se 3.4)  capped/match B-A -144.2 (se 140.5)
+cand81 S1 f16 | S1 all 32 seeds: points B-A -4.0 (se 2.8)  capped/match B-A -65.0 (se 62.2)
+cand81 S1 f17 | S1 all 32 seeds: points B-A -1.0 (se 3.9)  capped/match B-A +23.4 (se 74.1)
+cand81 S2 f16 | S2 all 32 seeds: points B-A +2.0 (se 2.0)  capped/match B-A +125.6 (se 74.7)
+cand81 S2 f17 | S2 all 32 seeds: points B-A +1.0 (se 2.3)  capped/match B-A +29.6 (se 105.2)
+cand82 S1 f16 | S1 all 32 seeds: points B-A -5.0 (se 2.5)  capped/match B-A -90.2 (se 51.9)
+cand82 S1 f17 | S1 all 32 seeds: points B-A +0.0 (se 3.2)  capped/match B-A +12.5 (se 69.3)
+cand82 S2 f16 | S2 all 32 seeds: points B-A -1.0 (se 2.3)  capped/match B-A -50.7 (se 93.5)
+cand82 S2 f17 | S2 all 32 seeds: points B-A -2.0 (se 2.5)  capped/match B-A -164.4 (se 133.2)
+cand83 S1 f16 | S1 all 32 seeds: points B-A -2.0 (se 2.0)  capped/match B-A -34.4 (se 42.0)
+cand83 S1 f17 | S1 all 32 seeds: points B-A +2.0 (se 3.5)  capped/match B-A +30.4 (se 71.1)
+cand83 S2 f16 | S2 all 32 seeds: points B-A +3.0 (se 1.7)  capped/match B-A +146.9 (se 82.2)
+cand83 S2 f17 | S2 all 32 seeds: points B-A +0.0 (se 2.5)  capped/match B-A -46.6 (se 135.5)
+-- one logged short match on seed 1001 against f16, the first action on the same button hands (old cand72 -> new):
+-- cand79
+c->c:  16 hands, old net  -286, new net   -63, new minus old  +223
+c->f:  15 hands, old net   -42, new net   -15, new minus old   +27
+f->c:   1 hands, old net    -1, new net    -2, new minus old    -1
+f->f:  19 hands, old net   -19, new net   -19, new minus old    +0
+f->r:   2 hands, old net    -2, new net  -187, new minus old  -185
+r->c:  45 hands, old net  +179, new net  +129, new minus old   -50
+r->f:   3 hands, old net    +8, new net    -3, new minus old   -11
+r->r:  99 hands, old net +1332, new net  +757, new minus old  -575
+-- cand81
+c->c:  10 hands, old net   -80, new net   -92, new minus old   -12
+c->f:  21 hands, old net  -248, new net   -21, new minus old  +227
+f->f:  21 hands, old net   -21, new net   -21, new minus old    +0
+f->r:   1 hands, old net    -1, new net    +8, new minus old    +9
+r->f:   8 hands, old net  +249, new net    -8, new minus old  -257
+r->r: 139 hands, old net +1270, new net  +791, new minus old  -479
+-- cand83
+c->c:  17 hands, old net  -282, new net  -239, new minus old   +43
+c->f:  12 hands, old net   -36, new net   -12, new minus old   +24
+c->r:   2 hands, old net   -10, new net   -37, new minus old   -27
+f->f:  20 hands, old net   -20, new net   -20, new minus old    +0
+f->r:   2 hands, old net    -2, new net   -19, new minus old   -17
+r->r: 147 hands, old net +1519, new net +2096, new minus old  +577
+-- how often f16 and f17 raised cand72's limps in that match:
+diag79/bl_cand72_f16/match.log L1: button hands 100, limps 16, raised 16, rule on for 69 hands
+diag79/bl_cand72_f16/match.log L2: button hands 100, limps 15, raised 15, rule on for 73 hands
+diag79/bl_cand72_f17/match.log L1: button hands 100, limps 13, raised 12, rule on for 69 hands
+diag79/bl_cand72_f17/match.log L2: button hands 100, limps 15, raised 14, rule on for 73 hands
+
+== 6. cand79 and cand83 beside cand72 against x5check (5001-5120) and x7limp, a copy of cand72 that raises every limp
+== to 10 (5121-5240). Positive: the version does better than cand72. Then each version's gaps to the controls.
+x_x5check_vs_cand79_s2_120.jsonl minus base raw    n 120 diff  +1001.2 se  113.2 z  +8.84
+x_x5check_vs_cand79_s2_120.jsonl minus base capped n 120 diff    +22.5 se   20.1 z  +1.12
+x_x5check_vs_cand83_s2_120.jsonl minus base raw    n 120 diff   +157.7 se   87.1 z  +1.81
+x_x5check_vs_cand83_s2_120.jsonl minus base capped n 120 diff    +14.1 se   10.0 z  +1.40
+x_x7limp_vs_cand79_s2.jsonl    minus base raw    n 120 diff   +513.3 se  114.3 z  +4.49
+x_x7limp_vs_cand79_s2.jsonl    minus base capped n 120 diff   +287.6 se   83.2 z  +3.46
+x_x7limp_vs_cand83_s2.jsonl    minus base raw    n 120 diff    -31.6 se  104.3 z  -0.30
+x_x7limp_vs_cand83_s2.jsonl    minus base capped n 120 diff    -44.4 se   83.9 z  -0.53
+S2 all 120 seeds: points B-A +13.0 (se 7.4)  capped/match B-A +287.6 (se 83.2)
+S2 all 120 seeds: points B-A -1.0 (se 7.7)  capped/match B-A -44.4 (se 83.9)
+hunt/x_x7limp_vs_cand72_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 33.3
+  x7limp       n 120  won  58  tied  0  lost  62  win%  48.3  mean capped chips   -40.5
+hunt/x_x7base_vs_cand72_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 37.1
+  x7base       n 120  won  69  tied  0  lost  51  win%  57.5  mean capped chips   +79.5
+hunt/x_x7limp_vs_cand79_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 34.1
+  x7limp       n 120  won  71  tied  0  lost  49  win%  59.2  mean capped chips  +247.0
+hunt/x_x7limp_vs_cand83_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 35.3
+  x7limp       n 120  won  57  tied  0  lost  63  win%  47.5  mean capped chips   -84.9
+hunt/x_x7base_vs_cand83_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 39.0
+  x7base       n 120  won  61  tied  0  lost  59  win%  50.8  mean capped chips   +10.1
+x_x7limp_vs_cand72_s2.jsonl    minus base raw    n 120 diff   -119.7 se   84.2 z  -1.42
+x_x7limp_vs_cand72_s2.jsonl    minus base capped n 120 diff   -120.0 se   74.6 z  -1.61
+x_x5limp_vs_cand79_s2_120.jsonl minus base raw    n 120 diff   +589.8 se  126.7 z  +4.66
+x_x5limp_vs_cand79_s2_120.jsonl minus base capped n 120 diff    +31.0 se   19.5 z  +1.59
+x_x5check_vs_cand79_s2_120.jsonl minus base raw    n 120 diff   +652.2 se  126.5 z  +5.16
+x_x5check_vs_cand79_s2_120.jsonl minus base capped n 120 diff    +28.8 se   18.5 z  +1.56
+x_x7limp_vs_cand79_s2.jsonl    minus base raw    n 120 diff   +507.0 se  115.8 z  +4.38
+x_x7limp_vs_cand79_s2.jsonl    minus base capped n 120 diff   +287.3 se   83.7 z  +3.43
+x_x5limp_vs_cand83_s2_120.jsonl minus base raw    n 120 diff    -13.7 se   89.6 z  -0.15
+x_x5limp_vs_cand83_s2_120.jsonl minus base capped n 120 diff     -9.9 se   16.5 z  -0.60
+x_x5check_vs_cand83_s2_120.jsonl minus base raw    n 120 diff   -100.2 se   91.9 z  -1.09
+x_x5check_vs_cand83_s2_120.jsonl minus base capped n 120 diff     -3.0 se   13.1 z  -0.23
+x_x7limp_vs_cand83_s2.jsonl    minus base raw    n 120 diff    -80.6 se  106.6 z  -0.76
+x_x7limp_vs_cand83_s2.jsonl    minus base capped n 120 diff    -95.0 se   88.4 z  -1.07
+
+== 7. The older limp-raising wrappers iso_c20 (cand20 raising every limp) and iso_f11 (f11 raising every limp),
+== fresh seeds 5241-5300, each version minus cand72:
+-- cand79
+S2 all 120 seeds: points B-A +14.0 (se 5.7)  capped/match B-A +174.2 (se 76.2)
+   iso_c20 S2 all 60 seeds: points B-A +16.0 (se 4.7)  capped/match B-A +460.9 (se 123.5)
+   iso_f11 S2 all 60 seeds: points B-A -2.0 (se 2.8)  capped/match B-A -112.5 (se 73.6)
+-- cand83
+S2 all 120 seeds: points B-A +2.0 (se 6.0)  capped/match B-A +32.7 (se 72.7)
+   iso_c20 S2 all 60 seeds: points B-A +4.0 (se 5.3)  capped/match B-A +111.6 (se 124.8)
+   iso_f11 S2 all 60 seeds: points B-A -2.0 (se 2.8)  capped/match B-A -46.3 (se 74.4)
+
+== 8. cand83 minus cand72 in match points against the all-in bots, and head to head against the plain copy x7base on
+== 240 deal sets (5121-5240 and fresh 5301-5420):
+-- x5shove
+S2 all 120 seeds: points B-A +0.0 (se 2.0)  capped/match B-A +17.2 (se 28.7)
+-- x5base
+S2 all 120 seeds: points B-A +0.0 (se 0.0)  capped/match B-A -0.3 (se 12.0)
+-- x7shove
+S2 all 120 seeds: points B-A +7.0 (se 5.2)  capped/match B-A -19.3 (se 64.7)
+-- x7call
+S2 x7call     seeds 120  rows A 120 B 120  wins A 120.0 B 120.0  capped A  +999 B +1000  B-A    +1
+S2 all 120 seeds: points B-A +0.0 (se 0.0)  capped/match B-A +0.8 (se 0.8)
+-- x7base
+S2 all 120 seeds: points B-A -8.0 (se 7.3)  capped/match B-A -69.4 (se 74.9)
+-- x7base, 240 deal sets:
+S2 all 240 seeds: points B-A -6.0 (se 11.2)  capped/match B-A -15.9 (se 56.3)
+
+== 9. The other practice bots against cand83, seeds 5001-5060: readers' gaps to x5base, copies of cand55 with one
+== habit (cand83's chips against them), and the strong all-in readers' gaps to x7base (5121-5240):
+x_x5sizes_vs_cand83_s2.jsonl   minus base raw    n 60 diff  +1608.3 se  154.3 z +10.42
+x_x5sizes_vs_cand83_s2.jsonl   minus base capped n 60 diff     +9.8 se    6.5 z  +1.52
+x_x5check_vs_cand83_s2.jsonl   minus base raw    n 60 diff   -168.5 se  137.5 z  -1.23
+x_x5check_vs_cand83_s2.jsonl   minus base capped n 60 diff    -12.8 se   15.1 z  -0.85
+x_x5all_vs_cand83_s2.jsonl     minus base raw    n 60 diff  +2017.5 se  145.2 z +13.90
+x_x5all_vs_cand83_s2.jsonl     minus base capped n 60 diff     +9.8 se    6.5 z  +1.52
+x_x6minbet_vs_cand83_s2.jsonl raw    n 60 mean  +1000.3 se  140.4 z +7.13  won 49
+x_x6minbet_vs_cand83_s2.jsonl capped n 60 mean   +588.2 se   81.9 z +7.18  won 49
+x_x6fake_vs_cand83_s2.jsonl  raw    n 60 mean  +2100.7 se  122.0 z +17.23  won 59
+x_x6fake_vs_cand83_s2.jsonl  capped n 60 mean   +953.6 se   21.9 z +43.59  won 59
+x_x6minraise_vs_cand83_s2.jsonl raw    n 60 mean  +4794.4 se  177.4 z +27.03  won 60
+x_x6minraise_vs_cand83_s2.jsonl capped n 60 mean  +1000.0 se    0.0 z  +inf  won 60
+x_x6overbet_vs_cand83_s2.jsonl raw    n 60 mean    +92.2 se  104.0 z +0.89  won 31
+x_x6overbet_vs_cand83_s2.jsonl capped n 60 mean    +62.9 se   86.4 z +0.73  won 31
+x_x7shove_vs_cand83_s2.jsonl   minus base raw    n 120 diff   +725.2 se   95.4 z  +7.60
+x_x7shove_vs_cand83_s2.jsonl   minus base capped n 120 diff   +519.9 se   69.7 z  +7.46
+x_x7call_vs_cand83_s2.jsonl    minus base raw    n 120 diff  +4457.7 se  151.4 z +29.44
+x_x7call_vs_cand83_s2.jsonl    minus base capped n 120 diff   +989.9 se   55.0 z +17.99

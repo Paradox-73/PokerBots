@@ -288,7 +288,7 @@ class Opp:
         p = np.array(prior(stc, lvl, sz), dtype=np.float64)
         if pool is not None:
             p = (pool + self.K_POOL * p) / (pool.sum() + self.K_POOL)
-        spec = self.counts.get((10 + st, lvl, sz))
+        spec = self.counts.get((10 + st, lvl, sz)) if st else None  # preflop the pooled key is this key
         if spec is not None:
             p = (spec + self.K_SPEC * p) / (spec.sum() + self.K_SPEC)
         if slot is not None:
@@ -521,7 +521,8 @@ class Bot:
         st = STREET[entry["street"]]
         action = entry["action"]
         lvl, sz = h.raises, h.sz
-        slot = (6 if h.button else 7) if lvl == 0 and st > 0 else None  # opens, or answers our check
+        # postflop: opens (6) or answers our check (7); preflop: big blind after our limp (8) or button open (9)
+        slot = ((6 if h.button else 7) if st > 0 else (8 if h.button else 9)) if lvl == 0 else None
         p = self.opp.dist(st, lvl, sz, slot)
         if action == "raise":
             faced = h.bets[0]
@@ -645,6 +646,10 @@ class Bot:
         cwe = np.cumsum(w * e)
         return cw, cwe
 
+    def limp_raiser(self):
+        c = self.opp.counts.get((30, 0, 8))  # the big blind's answers to our limps
+        return c is not None and c.sum() >= 5 and c[RS:].sum() >= 0.6 * c.sum()
+
     def decide(self, req):
         h = self.h
         st = STREET[req["street"]]
@@ -672,15 +677,24 @@ class Bot:
             options.append((0.0, "fold", None))
         if "check" in legal:
             options.append((self.ev_check(st, ip, P, behind, eq, window), "check", None))
+        # A big blind that raised most of our limps is not the one the solver's button play answers (it raises 37%).
+        lr = st == 0 and h.button and h.bets[0] <= 2 and h.raises <= 1 and self.view is not None and self.limp_raiser()
+        only_limp = lr and h.raises == 0 and self.view[2] < VETO_P  # a hand the solver would not open
         if "call" in legal:
             ev = self.value(eq, P + tc, behind, st, ip) - tc  # behind is already the stack after calling
             if st == 0 and h.button and h.raises == 0:  # a limp lets the big blind raise
-                r = o.dist(0, 0, 0)[RS:].sum()
-                ev = (1 - r) * ev + r * -tc
+                r = o.dist(0, 0, 0, 8)[RS:].sum()
+                # the better of folding and calling a raise to 10 against its raising range
+                cont = max(-tc, self.value(window(0, r), 20, behind - 8, st, ip) - 8 - tc) if only_limp else -tc
+                ev = (1 - r) * ev + r * cont
             options.append((ev, "call", None))
         if "raise" in legal:
             for to in self.sizes(req, eq):
                 options.append((self.ev_raise(st, ip, req, to, window), "raise", to))
+        if lr and h.raises == 1:
+            self.view = None  # our own model answers its raise
+        elif only_limp:
+            self.view = [1.0, *self.view[1:]]  # folding open instead of a forced limp
         return self.pick(options, P, req)
 
     def ev_check(self, st, ip, P, behind, eq, window):

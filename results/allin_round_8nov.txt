@@ -1,0 +1,119 @@
+The all-in round of 8 Nov. cand72 = the entry at its start. Candidates, each a change on cand72:
+  cand73 = lab/candidates/fix46.py: no preflop all-in while it is more than three pots.
+  cand74 = lab/candidates/fix47.py: no all-in more than three pots on any street.
+  cand75 = lab/candidates/fix48.py: the all-in is always offered and expected value decides it (no equity gate).
+  cand76 = cand74 + build/fix49.py (the two preflop counting bugs).  cand77 = cand75 + build/fix49.py.
+  cand78 = cand72 + build/fix49.py.
+Organisers' engine, two legs, Stage 2 (500 hands per leg). Raw = chips per match; capped = clipped to +-1000.
+
+== 1. The reader on a weak base. x5shove calls an all-in only with equity 0.90 or more against our range; x5base is
+== the same bot without that rule (the control). Seeds 5001-5120. Gap = chips against x5shove minus chips against
+== x5base on the same deals: negative means reading our all-ins gains the reader chips. This gate was dropped
+== after cand74's result: the control calls all-ins loosely, so its raw gap grows with any version that wins more
+== from it. Section 2 (readers on a strong base) replaced it.
+-- cand72
+hunt/x_x5shove_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 49.2
+  x5shove      n 120  won 117  tied  0  lost   3  win%  97.5  mean capped chips  +891.0
+hunt/x_x5base_vs_cand72_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 49.2
+  x5base       n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +978.5
+x_x5shove_vs_cand72_s2_120.jsonl minus base raw    n 120 diff   -889.1 se   94.1 z  -9.45
+x_x5shove_vs_cand72_s2_120.jsonl minus base capped n 120 diff    -87.5 se   28.3 z  -3.09
+-- cand74
+hunt/x_x5shove_vs_cand74_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 49.0
+  x5shove      n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +985.9
+hunt/x_x5base_vs_cand74_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 48.5
+  x5base       n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +987.0
+x_x5shove_vs_cand74_s2_120.jsonl minus base raw    n 120 diff   -602.0 se   90.9 z  -6.63
+x_x5shove_vs_cand74_s2_120.jsonl minus base capped n 120 diff     -1.2 se   10.2 z  -0.12
+-- cand75
+hunt/x_x5shove_vs_cand75_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 47.6
+  x5shove      n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +996.5
+hunt/x_x5base_vs_cand75_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 48.6
+  x5base       n 120  won 119  tied  0  lost   1  win%  99.2  mean capped chips  +961.4
+x_x5shove_vs_cand75_s2_120.jsonl minus base raw    n 120 diff   +308.4 se   97.3 z  +3.17
+x_x5shove_vs_cand75_s2_120.jsonl minus base capped n 120 diff    +35.0 se   12.7 z  +2.75
+-- cand77
+hunt/x_x5shove_vs_cand77_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 47.7
+  x5shove      n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +988.0
+hunt/x_x5base_vs_cand77_s2_120.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 48.0
+  x5base       n 120  won 119  tied  0  lost   1  win%  99.2  mean capped chips  +939.5
+x_x5shove_vs_cand77_s2_120.jsonl minus base raw    n 120 diff   +245.8 se  110.6 z  +2.22
+x_x5shove_vs_cand77_s2_120.jsonl minus base capped n 120 diff    +48.4 se   20.0 z  +2.42
+-- cand73 against x5shove beside cand72 (its own rule: more than 2 se better than cand72 in capped chips; it was not):
+S2 all 120 seeds: points B-A +1.0 (se 1.7)  capped/match B-A +52.1 (se 26.1)
+
+== 2. Readers on a strong base: copies of cand72 that, facing an all-in, call only with equity 0.90 or more
+== (x7shove) or with 0.30 or more (x7call), and the plain copy x7base. Seeds 5121-5240. Positive gap: the reader
+== does worse than the plain copy, so our all-ins are not a tell it can use.
+-- cand72
+hunt/x_x7shove_vs_cand72_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 37.9
+  x7shove      n 120  won  97  tied  0  lost  23  win%  80.8  mean capped chips  +549.3
+hunt/x_x7call_vs_cand72_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 38.3
+  x7call       n 120  won 120  tied  0  lost   0  win% 100.0  mean capped chips  +999.2
+hunt/x_x7base_vs_cand72_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 37.1
+  x7base       n 120  won  69  tied  0  lost  51  win%  57.5  mean capped chips   +79.5
+x_x7shove_vs_cand72_s2.jsonl   minus base raw    n 120 diff   +709.0 se   93.9 z  +7.55
+x_x7shove_vs_cand72_s2.jsonl   minus base capped n 120 diff   +469.9 se   69.8 z  +6.73
+x_x7call_vs_cand72_s2.jsonl    minus base raw    n 120 diff  +4496.0 se  143.4 z +31.35
+x_x7call_vs_cand72_s2.jsonl    minus base capped n 120 diff   +919.8 se   57.3 z +16.04
+-- cand76
+hunt/x_x7shove_vs_cand76_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 39.0
+  x7shove      n 120  won 106  tied  0  lost  14  win%  88.3  mean capped chips  +696.1
+hunt/x_x7call_vs_cand76_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 38.5
+  x7call       n 120  won  75  tied  0  lost  45  win%  62.5  mean capped chips  +197.7
+hunt/x_x7base_vs_cand76_s2.jsonl stage S2 rows 120 forfeits 0 notices 0 max time 38.1
+  x7base       n 120  won  71  tied  0  lost  49  win%  59.2  mean capped chips  +150.5
+x_x7shove_vs_cand76_s2.jsonl   minus base raw    n 120 diff   +813.8 se  105.8 z  +7.69
+x_x7shove_vs_cand76_s2.jsonl   minus base capped n 120 diff   +545.5 se   73.8 z  +7.39
+x_x7call_vs_cand76_s2.jsonl    minus base raw    n 120 diff    +61.1 se   97.2 z  +0.63
+x_x7call_vs_cand76_s2.jsonl    minus base capped n 120 diff    +47.2 se   78.7 z  +0.60
+
+== 3. Head to head against the plain copy x7base, seeds 5121-5240, each version paired with cand72's own result
+== against the same copy on the same deals (B = the version, A = cand72). Unpaired, cand72 itself came out
+== +69.5 raw per match against its own copy, which is luck; only the paired numbers below compare versions.
+x_x7base_vs_cand72_s2.jsonl  raw    n 120 mean    +69.5 se   67.3 z +1.03  won 69
+x_x7base_vs_cand72_s2.jsonl  capped n 120 mean    +79.5 se   57.5 z +1.38  won 69
+-- cand74
+S2 all 120 seeds: points B-A +3.0 (se 7.0)  capped/match B-A +95.2 (se 77.1)
+-- cand75
+S2 all 120 seeds: points B-A -28.0 (se 7.6)  capped/match B-A -354.6 (se 86.1)
+-- cand76
+S2 all 120 seeds: points B-A +2.0 (se 7.5)  capped/match B-A +71.0 (se 82.6)
+-- cand77
+S2 all 120 seeds: points B-A -23.0 (se 7.4)  capped/match B-A -287.2 (se 83.4)
+-- cand78
+S2 all 120 seeds: points B-A -6.0 (se 7.9)  capped/match B-A -139.4 (se 82.0)
+
+== 4. Against the loose all-in caller x7call, each version paired with cand72 (B = the version, A = cand72):
+-- cand76
+S2 x7call     seeds 120  rows A 120 B 120  wins A 120.0 B  75.0  capped A  +999 B  +198  B-A  -802
+S2 all 120 seeds: points B-A -45.0 (se 5.3)  capped/match B-A -801.5 (se 59.1)
+-- cand78
+S2 x7call     seeds 120  rows A 120 B 120  wins A 120.0 B 120.0  capped A  +999 B +1000  B-A    +1
+S2 all 120 seeds: points B-A +0.0 (se 0.0)  capped/match B-A +0.8 (se 0.8)
+
+== 5. The other 28 test bots (calling stations, maniacs, nits and others), S2 and S1 seeds 3601-3604, A = cand72.
+-- cand75
+S2 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A +1000 B +1000  B-A    +0
+S2 all 112 seeds: points B-A +1.0 (se 1.7)  capped/match B-A -2.2 (se 20.9)
+S1 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A  +400 B  +400  B-A    +0
+S1 all 112 seeds: points B-A -4.0 (se 2.8)  capped/match B-A -8.7 (se 15.2)
+-- cand76
+S2 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A +1000 B +1000  B-A    +0
+S2 all 112 seeds: points B-A +1.0 (se 2.2)  capped/match B-A +20.8 (se 24.6)
+S1 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A  +400 B  +400  B-A    +0
+S1 all 112 seeds: points B-A +0.0 (se 2.0)  capped/match B-A +7.6 (se 11.8)
+-- cand77
+S2 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A +1000 B +1000  B-A    +0
+S2 all 112 seeds: points B-A +1.0 (se 2.2)  capped/match B-A +10.5 (se 24.7)
+S1 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A  +400 B  +400  B-A    +0
+S1 all 112 seeds: points B-A +0.0 (se 2.5)  capped/match B-A +6.4 (se 14.4)
+-- cand78
+S2 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A +1000 B +1000  B-A    +0
+S2 all 112 seeds: points B-A +3.0 (se 1.7)  capped/match B-A +28.5 (se 20.1)
+S1 call       seeds   4  rows A   4 B   4  wins A   4.0 B   4.0  capped A  +400 B  +400  B-A    +0
+S1 all 112 seeds: points B-A +0.0 (se 2.5)  capped/match B-A +6.7 (se 13.6)
+
+Verdicts: cand73 missed its own bar. cand74 and cand76 were level with cand72 head to head but won 45 fewer of 120
+matches against x7call, so the big all-in is kept. cand75 and cand77 lost head to head. cand78 went on to the limp
+round (limp_round_9nov.txt).
