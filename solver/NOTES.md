@@ -107,7 +107,7 @@ python train.py export --checkpoint ckpt.npz --out bot/strategy.py
 
 ## Not tested / open risks
 
-- **Multiprocessing path never run** (laptop CPU is reserved). Run the step-1 smoke test on the server first.
+- **Multiprocessing path runs on the server only.** The committed table was trained there; the laptop runs only the single-process tests.
 - **Strength unknown**: no full-length match against `range_bot` or the frozen rivals, because the table is untrained.
 - **Merged-history imperfect recall**: the DAG forgets earlier-street sizes beyond the pot. CFR has no convergence guarantee under imperfect recall; in practice it usually works with abstractions like this one.
 - **Fixed discard rule**: the opponent model assumes the opponent discards by the same S rule. Bots that discard differently make the turn and river features less accurate.
