@@ -181,7 +181,7 @@ Playing alone (as `cfrS`), the solver came third in the 14-bot round robin in [R
 flowchart LR
     D["solver/train.py deals<br/>deal pool, 19.2 M deals"]:::step --> S["solver/train.py solve<br/>discounted CFR,<br/>resumable checkpoints"]:::step
     S --> E["solver/train.py export<br/>solver/bot/strategy.py"]:::sol
-    EVB["EV bot<br/>equity engine + opponent model"]:::step --> V
+    EVB["build/ev_bot.py<br/>EV bot: equity engine + opponent model"]:::step --> V
     E --> V["build/build_veto.py<br/>one file: EV bot + solver check,<br/>strategy table embedded as text"]:::step
     V --> C["build/cleanup.py<br/>lead-lock code removed"]:::step
     C --> F["build/fix20.py ... build/fix53.py<br/>14 exact edits, in order"]:::cut
@@ -205,18 +205,30 @@ python train.py solve --pool pool.npz --checkpoint ckpt.npz --workers 14 --batch
 python train.py export --checkpoint ckpt.npz --out bot/strategy.py
 ```
 
-`solve` writes a checkpoint every `--every` seconds and resumes from `ckpt.npz` if it exists. The committed `solver/bot/strategy.py` is an untrained smoke table; the trained table is embedded in `submission/bot.py`, and its header records the iterations and deals it was trained on. CFR sampling is random, so a new run gives a table of the same kind, not the same bytes.
+`solve` writes a checkpoint every `--every` seconds and resumes from `ckpt.npz` if it exists. The committed `solver/bot/strategy.py` is the trained table the entry uses (24,862 iterations, 611 M deals, as its header records). It was recovered from the copy embedded in `submission/bot.py`, where it is stored in base64, and written back in the base85 layout `export` produces; `build_veto.py` turns it into the same embedded text again. CFR sampling is random, so a new run gives a table of the same kind, not the same bytes; the steps below therefore start from the committed table.
 
 ### 2. The bot build
 
-[`build/build_veto.py`](build/build_veto.py) merges the EV bot and the solver folder (`abstraction.py`, `strategy.py`, `bot.py`) into one file. The arguments below are the ones the shipped constants show (`VETO_P = 0.1`, every option kind, from preflop):
+One command rebuilds `submission/bot.py` and the upload zip from the committed inputs and checks both md5 sums (text edits only, a few seconds on one core; checked with Python 3.12 on Windows). The zip's compressed bytes come from the zlib library, so a different zlib build could change the zip's md5 but never `bot.py`'s:
 
 ```bash
-python build/build_veto.py EV_BOT.py solver/bot fcr 0 b00.py 0.1
-python build/cleanup.py b00.py b01.py
+python build/rebuild_all.py            # writes build/out/, exit code 0 only if both sums match
 ```
 
-Then each fix script reads the previous file and writes the next one. Every script replaces exact text and asserts that text occurs once, so a step applied to the wrong input stops the build.
+```
+bot.py f0ddf15aa0d1b9651e5e9f117ca60dc6 OK
+zip    8e895671d6bb4d12ad5df8d4d44fed1a OK
+```
+
+The inputs are [`build/ev_bot.py`](build/ev_bot.py), the EV bot (equity engine and opponent model) before the solver was merged in, and the solver folder `solver/bot/` (`abstraction.py`, `strategy.py`, `bot.py`). [`build/build_veto.py`](build/build_veto.py) merges them into one file; [`build/rebuild_all.py`](build/rebuild_all.py) runs these steps, each reading the previous file and writing the next:
+
+```bash
+python build/build_veto.py build/ev_bot.py solver/bot fcr 0 b00.py 0.1   # every option kind, from preflop, VETO_P 0.1
+python build/cleanup.py b00.py b01.py
+python build/fix20.py b01.py b02.py                                         # and so on down the table below
+```
+
+`build_veto.py` takes the defaults for its last three arguments (BLEND 0, LOCK_MIN off, RUNOUT_CAP 240). Every fix script replaces exact text and asserts that text occurs once, so a step applied to the wrong input stops the build. The environment flags not listed in the table (`LEVEL0`, `PRE1`, `ALLIN_FREE`, `R1`, `G8`) stay unset. `rebuild_all.py` clears those flags from the environment it inherits, and prints each step's md5 next to the test build (`candNN`) that file is identical to.
 
 | Order | Script | Environment | What it changes | First shipped in |
 |---:|---|---|---|---|
@@ -235,9 +247,7 @@ Then each fix script reads the previous file and writes the next one. Every scri
 | 13 | [`fix49.py`](build/fix49.py) | | Preflop: the big blind's answer to our limp has its own counter; each preflop action counted once | `cand83` |
 | 14 | [`fix53.py`](build/fix53.py) | | Against a big blind that raises most limps, hands the solver would not open may fold instead of limping | `cand83` |
 
-For example: `python build/fix20.py b01.py b02.py`, then `E1=1 python build/fix32.py b05.py b06.py`, and so on to `submission/bot.py`.
-
-What is not committed as separate files: the starting EV bot and the trained `strategy.py`. The trained table is committed only inside `submission/bot.py`, and each fix script's docstring records why its edit was made.
+For example `E1=1 python build/fix32.py b05.py b06.py`. The output of the last step is byte for byte `submission/bot.py`. Each fix script's docstring records why its edit was made.
 
 ### 3. The upload zip
 
@@ -376,8 +386,8 @@ Tested and not shipped (below the 2-se bar set before the results, or worse):
 | Path | Contents |
 |---|---|
 | [`submission/bot.py`](submission/bot.py) | The entry. Self-contained: the decision code, the preflop table and the trained solver, embedded as compressed text. |
-| [`build/`](build/) | How the entry was assembled: `build_veto.py`, `cleanup.py`, the 14 fix scripts and `mkzip.py`. See [Rebuilding from source](#rebuilding-from-source). |
-| [`solver/`](solver/) | The CFR trainer (`train.py`), the abstraction it solves (`bot/abstraction.py`), a standalone solver bot, self-checks and [`NOTES.md`](solver/NOTES.md). `bot/strategy.py` here is an untrained smoke table. |
+| [`build/`](build/) | How the entry was assembled: the EV bot `ev_bot.py`, `build_veto.py`, `cleanup.py`, the 14 fix scripts, `mkzip.py` and `rebuild_all.py`, which runs them all. See [Rebuilding from source](#rebuilding-from-source). |
+| [`solver/`](solver/) | The CFR trainer (`train.py`), the abstraction it solves (`bot/abstraction.py`), a standalone solver bot, self-checks and [`NOTES.md`](solver/NOTES.md). `bot/strategy.py` is the trained table the entry uses. |
 | [`lab/`](lab/) | The test harness: match runners, paired comparisons, the round robin, the divergence analysis, test-opponent generators and the release checks. |
 | [`lab/candidates/`](lab/candidates/) | Patches for changes that were tested and not shipped. |
 | [`results/`](results/) | Result summaries cited in this README. |
