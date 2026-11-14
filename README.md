@@ -1,5 +1,8 @@
 <div align="center">
 
+<img src="docs/figures/banner.svg" alt="Hakari: a heads-up Discard Hold'em bot in one bot.py, 1.4 MB, standard library and NumPy only, 0 forfeits in testing. Synergy '26 Pokerbots, IIIT Bangalore. Team Hakari: Bhavya Jain, Kanav Bhardwaj." width="100%">
+<br>
+
 # Hakari
 
 **A heads-up Discard Hold'em bot for Synergy '26 Pokerbots.**<br>
